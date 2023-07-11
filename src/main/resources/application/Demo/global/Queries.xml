@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Queries.xml
+    Author     : Pablo VIDAL
+    Description: maintain list definition.
+-->
+
+<queries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/queries.xsd">
+     <query id="getPersons">
+         <table id="PERSON"/>
+         <field id="ID" alias="id"/>
+         <field id="FIRST_NAME" alias="first_name"/>
+         <field id="LAST_NAME" alias="last_name"/>
+         <field id="CITY" alias="city"/>
+         <field id="COUNTRY" alias="country"/>
+         <field id="DATE" alias="date" transform="DATE"/>
+        <where>
+             <and>
+                 <filter condition="eq" left-field="ID" right-variable="VarName" optional="true"/>
+                 <filter condition="eq" left-field="ID" right-variable="VarLastName" optional="true"/>
+                 <filter condition="eq" left-field="ID" right-variable="VarCity" optional="true"/>
+             </and>
+         </where>
+         <variable id="VarName" type="INTEGER" name="CrtFirst_name" optional="true"/>
+         <variable id="VarLastName" type="INTEGER" name="last_name" optional="true"/>
+         <variable id="VarCity" type="INTEGER" name="city" optional="true"/>
+     </query>
+    
+    <query id="getName">
+        <table id="PERSON" />
+        <field id="first_name" alias="label"/>
+        <field id="id" alias="value"/>
+        <where>
+            <and>
+                <filter condition="eq" left-field="id" right-variable="varLastName" optional="true"/>
+                <filter condition="eq" left-field="id" right-variable="varCity" optional="true"/>
+            </and>
+        </where>
+        <variable id="varLastName" type="INTEGER" name="last_name"/>
+        <variable id="varCity" type="INTEGER" name="city"/>
+    </query>
+
+    <query id="getLastName">
+        <table id="PERSON" />
+        <field id="last_name" alias="label"/>
+        <field id="id" alias="value"/>
+        <where>
+            <and>
+                <filter condition="eq" left-field="id" right-variable="varFirstName" optional="true"/>
+                <filter condition="eq" left-field="id" right-variable="varCity" optional="true"/>
+            </and>
+        </where>
+        <variable id="varFirstName" type="INTEGER" name="CrtFirst_name"/>
+        <variable id="varCity" type="INTEGER" name="city"/>
+    </query>
+
+    <query id="getCity">
+        <table id="PERSON" />
+        <field id="city" alias="label"/>
+        <field id="id" alias="value"/>
+        <where>
+            <and>
+                <filter condition="eq" left-field="id" right-variable="varFirstName" optional="true"/>
+                <filter condition="eq" left-field="id" right-variable="varLastName" optional="true"/>
+            </and>
+        </where>
+        <variable id="varFirstName" type="INTEGER" name="CrtFirst_name"/>
+        <variable id="varLastName" type="INTEGER" name="last_name"/>
+    </query>
+
+    <query id="getLogin">
+        <table id="USERS" />
+        <field id="LOGIN" alias="label"/>
+        <field id="USERID" alias="value"/>
+    </query>
+
+    <query id="getPersons2">
+        <table id="PERSON"/>
+        <field id="ID" alias="CrtIdUpd"/>
+        <field id="FIRST_NAME" alias="Cltfirstname"/>
+        <field id="LAST_NAME" alias="Cltlastname"/>
+        <field id="CITY" alias="Clt_city"/>
+        <field id="COUNTRY" alias="Clt_country"/>
+        <field id="DATE" alias="Clt_date" transform="DATE"/>
+        <where>
+            <and>
+                <filter condition="eq" left-field="ID" right-variable="VarId" />
+            </and>
+        </where>
+        <variable id="VarId" type="INTEGER" name="id.selected" />
+    </query>
+    <!-- for users -->
+    <query id="getUsers">
+        <table id="USERS" alias="U"/>
+        <field id="USERID" alias="userid"/>
+        <field id="LOGIN" alias="login"/>
+        <field id="PERSONID" alias="PERSONID"/>
+        <field id="FIRST_NAME" alias="FIRST_NAME"/>
+        <field id="LAST_NAME" alias="LAST_NAME"/>
+        <field id="CITY" alias="CITY"/>
+        <field id="COUNTRY" alias="COUNTRY"/>
+        <field id="DATE" alias="DATE" transform="DATE"/>
+        <join>
+            <table id="PERSON" alias="P"/>
+            <and>
+                <filter left-table="P" left-field="ID" condition="eq" right-table="U" right-field="PERSONID"/>
+            </and>
+        </join>
+    </query>
+
+    <query id="queryPrints" service="servicePrint">
+    </query>
+    <query id="queryPrint" >
+        <table id="CUSTOMER"/>
+        <field id="CUSTOMER_ID" />
+        <field id="COMPANYNAME" />
+        <field id="FULLNAME"/>
+        <field id="STATUS"/>
+        <field id="REGISTRATION_DATE" transform="DATE"/>
+    </query>
+    <!-- for customers -->
+    <query id="getCustomers">
+        <table id="CUSTOMER" alias="C"/>
+        <field id="CUSTOMER_ID" alias="ColCustomerId" table="C"/>
+        <field id="COMPANYNAME" alias="ColCompanyName" table="C"/>
+        <field id="FULLNAME" alias="ColFullName" table="C"/>
+        <field id="STATUS" alias="ColStatus" table="C" translate="enumStatus"/>
+        <field id="REGISTRATION_DATE" alias="ColRegistrationDate" transform="DATE" table="C"/>
+        <field id="DATEKYC" alias="ColDATEKYC" transform="DATE" table="C"/>
+        <field id="NAME" alias="ColName" table="CT"/>
+        <field id="NAME" alias="ColNameCat" table="CC"/>
+        <field id="USERID" alias="idLogin" table="U"/>
+        <field id="LOGIN" alias="lblLogin" table="U"/>
+        <compound alias="ColLogin">
+            <computed alias="value" format="[idLogin]"/>
+            <computed alias="label" format="[lblLogin]"/>
+        </compound>
+        <field id="CUSTOMER_TYPE_ID" alias="idType" table="CT"/>
+        <field id="NAME" alias="lblType" table="CT"/>
+        <compound alias="ColName">
+            <computed alias="value" format="[idType]"/>
+            <computed alias="value" format="[lblLogin]"/>
+        </compound>
+        <field id="CATEGORY_ID" alias="idCat" table="CC"/>
+        <field id="NAME" alias="lblCar" table="CC"/>
+        <compound alias="ColNameCat">
+            <computed alias="value" format="[idCat]"/>
+            <computed alias="value" format="[lblCar]"/>
+        </compound>
+        <join type="LEFT">
+            <table id="USERS" alias="U"/>
+            <and>
+                <filter left-table="U" left-field="USERID" condition="eq" right-table="C" right-field="USERID"/>
+            </and>
+        </join>
+        <join>
+            <table id="CUSTOMERTYPE" alias="CT"/>
+            <and>
+                <filter left-table="CT" left-field="CUSTOMER_TYPE_ID" condition="eq" right-table="C" right-field="CUSTOMER_TYPE_ID"/>
+            </and>
+        </join>
+        <join>
+            <table id="CUSTOMERCATEGORY" alias="CC"/>
+            <and>
+                <filter left-table="CC" left-field="CATEGORY_ID" condition="eq" right-table="C" right-field="CUSTOMER_CAT"/>
+            </and>
+        </join>
+    </query>
+    <query id="getCustomerType">
+        <table id="CUSTOMERTYPE"/>
+        <field id="NAME" alias="label"/>
+        <field id="CUSTOMER_TYPE_ID" alias="value"/>
+    </query>
+    <query id="getCustomerCategory">
+        <table id="CUSTOMERCATEGORY"/>
+        <field id="NAME" alias="label"/>
+        <field id="CATEGORY_ID" alias="value"/>
+    </query>
+    <query id="getNature">
+        <table id="NATURE"/>
+        <field id="NAME" alias="label"/>
+        <field id="NATURE_ID" alias="value"/>
+    </query>
+    <query id="getServiceType">
+        <table id="SERVICE_TYPE"/>
+        <field id="NAME" alias="label"/>
+        <field id="SERVICE_TYPE_ID" alias="value"/>
+    </query>
+</queries>

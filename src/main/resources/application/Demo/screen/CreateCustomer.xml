@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
+    <tag source="center">
+        <dialog id="CreateCustomer" label="Create Customer" icon="info-circle" style="modal-lg" modal="true">
+            <wizard id="wizardTest" initial-load="enum" target-action="enumWizard" label="SCREEN_TEXT_STEP">
+                <wizard-panel id="WizardStep1">
+                    <tag type="div" style="expand" expandible="vertical">
+                        <tag type="div" style="panel-body expand scrollable">
+                            <tag type="div" label="General data" style="xlg"/>
+                            <criteria placeholder="Registration date" component="date"  id="CrtRegisterDate"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtStatus" initial-load="enum" target-action="enumStatus" label="Status" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Date KYC" component="date"  id="CrtDateKYC"  label="Date KYC" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtClassification" initial-load="query" target-action="getCustomerType" label="Classification" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtLegalPerson" initial-load="enum" target-action="enumLegalPerson" label="Legal Person Classification" style="col-md-4 col-sm-4 col-xs-7">
+                                <dependency target-type="show" initial="true">
+                                    <dependency-element id="CrtClassification" condition="eq" value="1"/>
+                                </dependency>
+                            </criteria>
+                            <criteria placeholder="Select one" component="select"  id="CrtNaturalPerson" initial-load="enum" target-action="enumNaturalPerson" label="Natural Person Classification" style="col-md-4 col-sm-4 col-xs-7">
+                                <dependency target-type="show" initial="true">
+                                    <dependency-element id="CrtClassification" condition="eq" value="2"/>
+                                </dependency>
+                            </criteria>
+                            <criteria placeholder="Select one" component="select"  id="CrtCategory" initial-load="query" target-action="getCustomerCategory" label="Category" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtUser" initial-load="query" target-action="getLogin" label="Category" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtNature" label="Legal Nature" style="col-md-4 col-sm-4 col-xs-7" optional="true" >
+                                <dependency source-type="query" target-type="input" server-action="data" target-action="getNature" async="true" initial="true">
+                                    <dependency-element id="CrtClassification" condition="eq" value="2"/>
+                                </dependency>
+                                <dependency initial="true">
+                                    <dependency-action type="restore" target="CrtNature"/>
+                                    <dependency-element id="CrtClassification" condition="eq" value="1"/>
+                                </dependency>
+                            </criteria>
+                        </tag>
+                        <tag type="div" style="panel-footer">
+                            <tag type="div" style="pull-right">
+                                <button label="BUTTON_NEXT" icon="chevron-circle-right" id="FwStep2" style="btn-primary">
+                                    <button-action type="validate" target="WizardStep1"/>
+                                    <button-action type="next-step" target="wizardTest"/>
+                                </button>
+                            </tag>
+                        </tag>
+                    </tag>
+                </wizard-panel>
+                <wizard-panel id="WizardStep2">
+                    <tag type="div" style="expand" expandible="vertical">
+                        <tag type="div" style="panel-body expand">
+                            <criteria placeholder="Registration date" component="date"  id="CrtRegisterDateCtt"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Account number" component="text"  id="CrtAccountNumber" label="Account Number" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Contract code" component="text"   id="CrtContractCode"  label="Contract code" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Advising clause" component="text"  id="CrtAdvisingClause" label="Advising clause" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select value" component="select"  id="CrtRate" label="Rate" style="col-md-4 col-sm-4 col-xs-7"/>
+                            <criteria component="checkbox" id="CrtCheckbox1" label="rule 1"/>
+                            <criteria component="checkbox" id="CrtCheckbox2" label="rule 2"/>
+                            <criteria component="checkbox" id="CrtCheckbox3" label="rule 3"/>
+                            <criteria component="checkbox" id="CrtCheckbox4" label="rule 4"/>
+                            <criteria component="textarea" id="CrtComment" label="Expressions and additional conditions"/>
+                        </tag>
+                        <tag type="div" style="panel-footer">
+                            <tag type="div" style="pull-right">
+                                <button label="BUTTON_PREVIOUS" icon="chevron-circle-left" id="BkStep1">
+                                    <button-action type="prev-step" target="wizardTest"/>
+                                </button>
+                                <button label="BUTTON_NEXT" icon="chevron-circle-right" id="FwStep3" style="btn-primary">
+                                    <button-action type="validate" target="WizardStep2"/>
+                                    <button-action type="next-step" target="wizardTest"/>
+                                </button>
+                            </tag>
+                        </tag>
+                    </tag>
+                </wizard-panel>
+                <wizard-panel id="WizardStep3">
+                    <tag type="div" style="expand" expandible="vertical">
+                        <tag type="div" style="panel-body expand">
+                            <criteria placeholder="Code" component="numeric"  id="CrtCode"  label="Code" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="suggest" id="CrtServiceType" label="Service Type" initial-load="query" target-action="getServiceType" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtCurrency"  label="Currency" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Select one" component="select"  id="CrtOfficial" initial-load="enum" target-action="enumOfficial" label="Official" style="col-md-4 col-sm-4 col-xs-7"/>
+                            <criteria placeholder="Select one" component="select"  id="CrtRiskCalcul" initial-load="enum" target-action="enumRiskCalculation" label="Risk Calculation" style="col-md-4 col-sm-4 col-xs-7"/>
+                        </tag>
+                        <tag type="div" style="panel-footer">
+                            <tag type="div" style="pull-right">
+                                <button label="BUTTON_PREVIOUS" icon="chevron-circle-left" id="BkStep2">
+                                    <button-action type="prev-step" target="wizardTest"/>
+                                </button>
+                                <button label="BUTTON_FINISH" icon="check" id="Finish" style="btn-primary">
+                                    <button-action type="validate" target="WizardStep3"/>
+                                    <button-action type="server" server-action="maintain" target-action="createCustomer"/>
+                                    <button-action type="filter" target="Grid3"/>
+                                </button>
+                            </tag>
+                        </tag>
+                    </tag>
+                </wizard-panel>
+            </wizard>
+        </dialog>
+    </tag>
+</screen>

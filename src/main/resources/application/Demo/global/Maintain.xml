@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : Maintain.xml
+    Author     : Pablo GARCIA
+    Description: maintain list definition.
+-->
+<maintain xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/maintain.xsd">
+    <target name="createPerson">
+        <insert>
+            <table id="PERSON"/>
+            <field id="FIRST_NAME" variable="Nvariavle"/>
+            <field id="LAST_NAME" variable="Pvariable"/>
+            <field id="CITY" variable="CIvariable"/>
+            <field id="COUNTRY" variable="Cvariable"/>
+            <field id="DATE" variable="Dvariable"/>
+            <variable id="Nvariavle" type="STRING" name="Cltfirst_name" />
+            <variable id="Pvariable" type="STRING" name="Cltlast_name" />
+            <variable id="CIvariable" type="STRING" name="Cltcity" />
+            <variable id="Cvariable" type="STRING" name="Cltcountry" />
+            <variable id="Dvariable" type="DATE" name="Cltdate"/>
+        </insert>
+
+    </target>
+
+    <target name="createUser">
+        <insert>
+            <table id="USERS"/>
+            <field id="LOGIN" variable="Lvariable"/>
+            <field id="PERSONID" variable="PersonIDVariable"/>
+            <variable id="Lvariavle" type="STRING" name="Cltlogin"/>
+            <variable id="PersonIDVariable" type="INTEGER" name="CltFirst_name"/>
+        </insert>
+    </target>
+
+    <target name="deletePerson">
+        <delete>
+            <table id="PERSON" />
+            <where>
+                <and>
+                    <filter left-field="ID" condition="eq" right-variable="IdePro" />
+                </and>
+            </where>
+            <variable id="IdePro" type="INTEGER" name="id.selected" />
+        </delete>
+    </target>
+
+
+    <target name="updatePerson">
+        <update>
+            <table id="PERSON"/>
+            <field id="FIRST_NAME" variable="Fvariable"/>
+            <field id="LAST_NAME" variable="Lvariable"/>
+            <field id="CITY" variable="Cvariable"/>
+            <field id="COUNTRY" variable="COvariable"/>
+            <field id="DATE" variable="DAvariable"/>
+            <where>
+                <and>
+                    <filter left-field="ID" condition="eq" right-variable="IdePer"/>
+                </and>
+            </where>
+            <variable id="IdePer" type="INTEGER" name="id.selected"/>
+            <variable id="Fvariable" type="STRING" name="Cltfirstname" />
+            <variable id="Lvariable" type="STRING" name="Cltlastname" />
+            <variable id="Cvariable" type="STRING" name="Clt_city" />
+            <variable id="COvariable" type="STRING" name="Clt_country" />
+            <variable id="DAvariable" type="DATE" name="Clt_date"/>
+        </update>
+    </target>
+
+
+    <target name="testMaintain">
+        <serve service="testMaintain"/>
+
+    </target>
+
+    <target name="insertCustomer">
+      <multiple grid="Grid3">
+          <table id="CUSTOMER"/>
+          <field id="CUSTOMER_ID" variable="IdeCust" key="true"/>
+          <field id="COMPANYNAME" variable="Companyvariable"/>
+          <field id="FULLNAME" variable="Fvariable"/>
+          <field id="USERID" variable="userIDvariable"/>
+
+          <variable id="IdeCust" type="INTEGER" name="ColCustomerId"/>
+          <variable id="Companyvariable" type="STRING" name="ColCompanyName" />
+          <variable id="Fvariable" type="STRING" name="ColFullName" />
+          <variable id="userIDvariable" type="INTEGER" name="ColLogin" />
+      </multiple>
+
+    </target>
+
+    <target name="createCustomer">
+        <insert>
+            <table id="CUSTOMER"/>
+            <field id="REGISTRATION_DATE" variable="Rvariable"/>
+            <field id="STATUS" variable="Svariable"/>
+            <field id="DATEKYC" variable="Dvariable"/>
+            <field id="CUSTOMER_TYPE_ID" variable="CTvariable"/>
+            <field id="CUSTOMER_CAT" variable="CCvariable"/>
+            <field id="NATURE" variable="Nvariable"/>
+            <variable id="Rvariable" type="DATE" name="CrtRegisterDate"/>
+            <variable id="Svariable" type="BOOLEAN" name="CrtStatus"/>
+            <variable id="Dvariable" type="DATE" name="CrtDateKYC"/>
+            <variable id="CTvariable" type="INTEGER" name="CrtClassification"/>
+            <variable id="CCvariable" type="INTEGER" name="CrtCategory"/>
+            <variable id="Nvariable" type="INTEGER" name="CrtNature"/>
+        </insert>
+        <insert>
+            <table id="CONTRACT"/>
+            <field id="CONTRACT_CODE" variable="CCvariable"/>
+            <field id="ACCOUNT_NUMBER" variable="ANvariable"/>
+            <field id="REGISTRATION_DATE" variable="RDvariable"/>
+            <field id="ADVISING_CLAUSE" variable="ACvariable"/>
+            <field id="RATE" variable="Ratevariable"/>
+            <variable id="CCvariable" type="DATE" name="CrtContractCode"/>
+            <variable id="ANvariable" type="INTEGER" name="CrtAccountNumber"/>
+            <variable id="RDvariable" type="DATE" name="CrtRegisterDateCtt"/>
+            <variable id="ACvariable" type="STRING" name="CrtAdvisingClause"/>
+            <variable id="Ratevariable" type="STRING" name="CrtRate"/>
+        </insert>
+        <!--<insert>
+            <table id="CONTRACT_CUSTOMER"/>
+            <field id="CONTRACT_ID"/>
+            <field id="CUSTOMER_ID"/>
+        </insert>-->
+    </target>
+
+</maintain>

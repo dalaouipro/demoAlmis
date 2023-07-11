@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Document   : Local-FR
+  Description: Application locales
+-->
+
+<locales xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/locale.xsd">
+
+
+    <locale name="CONFIRM_MESSAGE_DELETE" value="voulez vous supprimer ?"/>
+    <locale name="CONFIRM_MESSAGE_UPDATE" value="Personne mise à jour avec succès"/>
+    <locale name="CONFIRM_MESSAGE" value="Cofirmer la requete"/>
+
+</locales>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1048f71c-6940-4fa3-9cb4-c6d959991e6f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="title" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="companyname" class="java.lang.String"/>
+	<field name="fullname" class="java.lang.String"/>
+	<field name="status" class="java.lang.Boolean"/>
+	<field name="registrationDate" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="190" y="20" width="100" height="30" uuid="234804c8-eac7-4188-8a2a-9baea56d4191"/>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="22" width="100" height="30" uuid="92e0964c-2274-4834-8eb8-851a73969b9d"/>
+				<text><![CDATA[COMPANYNAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="22" width="100" height="30" uuid="4789122a-e8fb-4e26-8e8a-cce3046c4d39"/>
+				<text><![CDATA[FULLNAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="22" width="100" height="30" uuid="34929c4e-26db-4054-a130-c62bf12fe4bb"/>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="22" width="100" height="30" uuid="1ddc3831-8a77-46ac-aa0b-71f774f98f18"/>
+				<text><![CDATA[REGISTRATION_DATE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="-10" y="15" width="100" height="30" uuid="2c3e6abb-6467-46c2-a5a8-a6d486c7ba54"/>
+				<textFieldExpression><![CDATA[$F{companyname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="15" width="100" height="30" uuid="599edbc5-6749-4404-83b2-f9e13cdb324e"/>
+				<textFieldExpression><![CDATA[$F{fullname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="15" width="100" height="30" uuid="0875f3ea-cf4c-4882-b024-cc0c4c9f2288"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="15" width="100" height="30" uuid="a55073fc-26a0-44b5-93e7-d5ff702e063b"/>
+				<textFieldExpression><![CDATA[$F{registrationDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

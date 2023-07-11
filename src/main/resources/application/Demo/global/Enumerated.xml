@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Enumerated.xml
+    Author     : Pablo GARCIA
+    Description:
+        Purpose of the document follows.
+-->
+
+<enumerated xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/enumerated.xsd">
+    <group id="enumeration">
+        <option label="PERSONS"  value="1" />
+        <option label="USERS"  value="2" />
+            <option label="CUSTOMERS"  value="3" />
+    </group>
+    <group id="enumCountry">
+        <option label="Morroco"  value="Morroco" />
+        <option label="Espagne"  value="Espagne" />
+        <option label="French"  value="French" />
+    </group>
+    <group id="enumWizard">
+        <option label="CUSTOMER"  value="WizardStep1" />
+        <option label="CONTRACT"  value="WizardStep2" />
+        <option label="PORTFOLIO"  value="WizardStep3" />
+    </group>
+    <group id="enumStatus">
+        <option label="Active"  value="TRUE" />
+        <option label="Desactive"  value="FALSE"/>
+    </group>
+    <group id="enumNaturalPerson">
+        <option label="Resident Tax regime"  value="1" />
+    </group>
+    <group id="enumLegalPerson">
+        <option label="Foundation/trusts"  value="1" />
+        <option label="Regulated financial Institution"  value="2" />
+        <option label="investment Fund"  value="3" />
+        <option label="Public Limited Company"  value="4" />
+        <option label="PartnerShip"  value="5" />
+    </group>
+    <group id="enumOfficial">
+        <option label="Yes"  value="TRUE" />
+        <option label="No"  value="FALSE" />
+    </group>
+    <group id="enumRiskCalculation">
+        <option label="Yes"  value="TRUE" />
+        <option label="No"  value="FALSE" />
+    </group>
+</enumerated>

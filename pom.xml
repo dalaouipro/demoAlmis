@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.almis.awe</groupId>
+    <artifactId>awe-starter-parent</artifactId>
+    <version>4.6.10</version>
+  </parent>
+
+  <groupId>org.example</groupId>
+  <artifactId>Demo</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>Demo</name>
+
+  <properties>
+    <!-- Application maven properties -->
+    <awe.version>4.6.10</awe.version>
+    <java.version>1.8</java.version>
+    <application.name>Demo V1.0-SNAPSHOT</application.name>
+    <application.acronym>Demo</application.acronym>
+
+    <!-- Build properties -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.frontend>${project.build.directory}/classes/static/</project.build.frontend>
+    <check.xml.directory>${project.basedir}/src/main/resources/application/</check.xml.directory>
+
+    <!-- Build environment -->
+    <build.environment>development</build.environment>
+  </properties>
+
+  <dependencies>
+    <!-- AWE -->
+    <dependency>
+      <groupId>com.almis.awe</groupId>
+      <artifactId>awe-spring-boot-starter</artifactId>
+    </dependency>
+
+    <!-- AngularJS UI -->
+    <dependency>
+      <groupId>com.almis.awe</groupId>
+      <artifactId>awe-client-angular</artifactId>
+    </dependency>
+
+    <!-- Spring Boot DevTools -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- JDBC Drivers -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>6.18.1</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>2.3.2</version>
+    </dependency>
+
+    <!-- Runtime, com.sun.xml.bind module -->
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>Demo</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- AWE static resources -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <id>unpack awe-generic-screens schemas</id>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.almis.awe</groupId>
+                  <artifactId>awe-generic-screens</artifactId>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <includes>schemas/**,</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <phase>generate-sources</phase>
+            <id>unpack awe-generic-screens docs</id>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.almis.awe</groupId>
+                  <artifactId>awe-generic-screens</artifactId>
+                  <outputDirectory>${project.build.frontend}</outputDirectory>
+                  <includes>docs/**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <phase>generate-resources</phase>
+            <id>unpack awe-client-angular</id>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.almis.awe</groupId>
+                  <artifactId>awe-client-angular</artifactId>
+                  <outputDirectory>${project.build.frontend}</outputDirectory>
+                  <includes>images/**,css/**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Spring boot -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Frontend generation -->
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- Xml validation -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!--<plugin>
+        <groupId>com.alexnederlof</groupId>
+        <artifactId>jasperreports-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>jasper</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.18.1</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <sourceDirectory>src/main/resources/jrxml</sourceDirectory>
+          <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+        </configuration>
+      </plugin>-->
+    </plugins>
+  </build>
+
+  <!-- Reporting javadoc -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <show>public</show>
+          <outputDirectory>${project.build.directory}/apidocs</outputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
