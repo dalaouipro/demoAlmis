@@ -11,7 +11,7 @@
 
 
     <service id="servicePrint">
-        <java classname="org.example.testService" method="print"/>
+        <java classname="org.example.services.testService" method="print"/>
     </service>
 
 

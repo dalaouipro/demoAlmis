@@ -1,4 +1,4 @@
-package org.example;
+package org.example.services;
 
 import com.almis.awe.config.ServiceConfig;
 import com.almis.awe.exception.AWException;
@@ -8,8 +8,7 @@ import com.almis.awe.model.util.data.DataListUtil;
 import com.almis.awe.service.QueryService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import org.example.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,21 +36,21 @@ public class testService extends ServiceConfig {
     }
 
     private List<Customer> getCustomers() throws AWException, ParseException {
-        DataList l = queryService.launchQuery("queryPrint").getDataList();
+        DataList customerList = queryService.launchQuery("queryPrint").getDataList();
         List<Customer> customers = new ArrayList<>();
         String pattern = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 
-        for (int i = 0; i < l.getRows().size(); i++) {
-            Integer id = Integer.valueOf(DataListUtil.getData(l, i, "id"));
-            String companyName = DataListUtil.getData(l, i, "COMPANYNAME");
-            String fullName = DataListUtil.getData(l, i, "FULLNAME");
-            Boolean status = Boolean.valueOf(DataListUtil.getData(l, i, "STATUS"));
-            String registerDate = DataListUtil.getData(l,i,"REGISTRATION_DATE");
+        for (int i = 0; i < customerList.getRows().size(); i++) {
+            Integer id = Integer.valueOf(DataListUtil.getData(customerList, i, "id"));
+            String companyName = DataListUtil.getData(customerList, i, "COMPANYNAME");
+            String fullName = DataListUtil.getData(customerList, i, "FULLNAME");
+            Boolean status = Boolean.valueOf(DataListUtil.getData(customerList, i, "STATUS"));
+            String registerDate = DataListUtil.getData(customerList,i,"REGISTRATION_DATE");
 
             Date RegistrationDate = null;
             if(registerDate != null && !registerDate.isEmpty()){
-                RegistrationDate = dateFormat.parse(DataListUtil.getData(l,i,"REGISTRATION_DATE"));
+                RegistrationDate = dateFormat.parse(DataListUtil.getData(customerList,i,"REGISTRATION_DATE"));
             }
             customers.add(new Customer(id,
                     companyName,
