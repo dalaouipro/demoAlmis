@@ -26,9 +26,8 @@ public class testService extends ServiceConfig {
 
 
     public ServiceData print() throws FileNotFoundException, JRException, AWException, ParseException {
-        String destpath = "C:\\Users\\HP\\Documents\\JAVA";
-       // String srcpath = "C:\\Users\\HP\\IdeaProjects\\Demo\\src\\main\\resources\\jrxml\\Blank_A4.jrxml";
-        String srcpath = "C:\\Users\\HP\\Desktop\\demoAlmis\\src\\main\\resources\\jrxml\\Blank_A4_1.jrxml";
+        String destpath = "C:\\Users\\user\\Documents\\reports";
+        String srcpath = "C:\\Users\\user\\Desktop\\demoAlmis\\src\\main\\resources\\jrxml\\Blank_A4_1.jrxml";
         ServiceData serviceData = new ServiceData();
         generateReport(destpath,srcpath);
         return serviceData;
