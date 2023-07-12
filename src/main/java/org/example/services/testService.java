@@ -61,7 +61,7 @@ public class testService extends ServiceConfig {
         return customers;
     }
 
-    private void generateReport(String destinationPath,String sourcePath) throws FileNotFoundException, JRException, AWException, ParseException {
+    private void generateReport(String destinationPath,String sourcePath) throws  JRException, AWException, ParseException {
 
         File file = new File(sourcePath);
         List<Customer> customers = getCustomers();
