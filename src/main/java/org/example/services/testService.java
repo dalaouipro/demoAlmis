@@ -68,8 +68,9 @@ public class testService extends ServiceConfig {
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(customers);
         Map<String, Object> parameters = new HashMap<>();
+        parameters.put("customers",dataSource);
         try {
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
             JasperExportManager.exportReportToPdfFile(jasperPrint, destinationPath + "\\customer.pdf");
         } catch (JRException e){
             e.printStackTrace();
