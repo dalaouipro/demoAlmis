@@ -68,5 +68,9 @@
     <option name="application-help" label="MENU_HELP_APPLICATION" screen="application-help" icon="question" />
     <option name="application-info" label="MENU_APP_INF" screen="ViwAppInf" icon="info" />
   </option>
-  <option name="page" label="Page 1" screen="page" />
+  <option name="finance" label="Finance">
+    <option name="assets" label="Assets" screen="assets" />
+    <option name="position" label="Position" screen="" />
+    <option name="customer" label="Customer" screen="page" />
+  </option>
 </menu>

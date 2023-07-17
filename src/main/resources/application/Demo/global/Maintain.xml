@@ -119,11 +119,30 @@
             <variable id="ACvariable" type="STRING" name="CrtAdvisingClause"/>
             <variable id="Ratevariable" type="STRING" name="CrtRate"/>
         </insert>
+        <insert>
+            <table id="PORTFOLIO"/>
+            <field id="RISK_CALCULATION" variable="RCVariable"/>
+            <field id="CURRENCY" variable="currencyVariable"/>
+            <field id="SERVICE_TYPE" variable="STVariable"/>
+            <field id="CODE" variable="CodeVariable"/>
+            <variable id="RCVariable" type="BOOLEAN" name="CrtRiskCalcul"/>
+            <variable id="currencyVariable" type="STRING" name="CrtCurrency"/>
+            <variable id="STVariable" type="INTEGER" name="CrtServiceType"/>
+            <variable id="CodeVariable" type="INTEGER" name="CrtCode"/>
+        </insert>
         <!--<insert>
             <table id="CONTRACT_CUSTOMER"/>
             <field id="CONTRACT_ID"/>
             <field id="CUSTOMER_ID"/>
         </insert>-->
     </target>
-
+  <target name="insertAsset">
+      <insert>
+          <table id="ASSETS"/>
+          <field id="PRODUCT_ID" variable="ProductVariable"/>
+          <field id="ACTIVE" variable="ActiveVariable"/>
+          <variable id="ProductVariable" type="INTEGER" name="CrtProductDiaCrt" />
+          <variable id="ACTIVE" type="STRING" name="CrtActiveDiaCrt" />
+      </insert>
+  </target>
 </maintain>

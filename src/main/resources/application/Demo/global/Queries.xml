@@ -188,4 +188,45 @@
         <field id="NAME" alias="label"/>
         <field id="SERVICE_TYPE_ID" alias="value"/>
     </query>
+    <query id="getProduct">
+        <table id="PRODUCT"/>
+        <field id="NAME" alias="label"/>
+        <field id="ID" alias="value"/>
+    </query>
+    <query id="getContract">
+        <table id="CONTRACT"/>
+        <field id="CONTRACT_NAME" alias="label"/>
+        <field id="CONTRACT_ID" alias="value"/>
+    </query>
+    <query id="getAssets">
+        <table id="ASSETS" alias="A"/>
+        <field id="ID" table="A" alias="ColIdAsset"/>
+        <field id="CONTRACT_NAME" table="C" alias="ColContract"/>
+        <field id="NAME" table="Pr" alias="ColProduct"/>
+        <field id="ACTIVE" table="A" alias="ColActive" />
+        <join>
+            <table id="PRODUCT" alias="Pr"/>
+            <and>
+                <filter left-table="Pr" left-field="ID" condition="eq" right-table="A" right-field="PRODUCT_ID"/>
+            </and>
+        </join>
+        <join>
+            <table id="POSITION" alias="Po"/>
+            <and>
+                <filter left-table="Po" left-field="ID" condition="eq" right-table="A" right-field="POSITION_ID"/>
+            </and>
+        </join>
+        <join>
+            <table id="PORTFOLIO" alias="P"/>
+            <and>
+                <filter left-table="P" left-field="POSITION_ID" condition="eq" right-table="A" right-field="POSITION_ID"/>
+            </and>
+        </join>
+        <join>
+            <table id="CONTRACT" alias="C"/>
+            <and>
+                <filter left-table="C" left-field="PORTFOLIO_ID" condition="eq" right-table="P" right-field="PORTFOLIO_ID"/>
+            </and>
+        </join>
+    </query>
 </queries>

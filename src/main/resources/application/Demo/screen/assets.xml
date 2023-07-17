@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
+    <tag source="buttons">
+        <button id="BtnCrtAss" label="Create Asset">
+            <button-action type="dialog" target="CreateAssetDialog"/>
+        </button>
+        <button id="BtnUpdAss" label="Update Asset">
+        </button>
+        <button id="BtnDelAss" label="Delete Asset">
+        </button>
+    </tag>
+
+    <tag source="center">
+        <window label="Assets list" maximize="true" icon="camera-retro">
+            <tag type="div" style="panel-body expand-maximize">
+                <criteria placeholder="currency" component="suggest"  id="CrtCurrency" label="currency" style="col-xs-6 col-sm-4 col-md-2"/>
+                <criteria placeholder="contract" component="suggest" id="CrtContract" label="contract" initial-load="query" target-action="getContract" style="col-xs-6 col-sm-4 col-md-2" />
+                <criteria placeholder="product" component="suggest" initial-load="query" target-action="getProduct" id="CrtProduct" label="product"  style="col-xs-6 col-sm-4 col-md-2" />
+                <criteria placeholder="active" component="select" label="Active" initial-load="enum" target-action="enumActive" id="CrtActive" style="col-xs-6 col-sm-4 col-md-2" />
+                <criteria placeholder="description" component="suggest"  id="CrtDescription"  label="description" style="col-xs-6 col-sm-4 col-md-2" />
+            </tag>
+            <tag type="div" style="panel-footer">
+                <tag type="div" style="pull-right">
+                    <button id="ButGetAssets" label="Search" icon="filter" >
+                        <button-action type="filter"  target="GrdAssets"/>
+                    </button>
+                </tag>
+            </tag>
+        </window>
+        <tag type="div" style="expand" expandible="vertical">
+            <window style="expand" maximize="true" expandible="vertical">
+                <grid id="GrdAssets" style="expand" max="30" multiselect="true" server-action="data" initial-load="query" autoload="true" target-action="getAssets" checkbox-multiselect="false">
+                    <column label="Id" name="ColIdAsset" align="left" charlength="10" style="separator" />
+                    <column label="Active" name="ColActive" align="center" charlength="20"/>
+                    <column label="Contract" name="ColContract" align="center" charlength="20" />
+                    <column label="Description" name="ColDescription"  align="center" charlength="20" component="text-view"  />
+                    <column label="Currency" name="ColCurrency"  align="center" charlength="20" component="text-view" />
+                    <column label="Instrument" name="ColInstrument" align="center" charlength="20" component="text-view"/>
+                    <column label="Product" name="ColProduct" align="center" charlength="20" component="text-view"/>
+                </grid>
+            </window>
+        </tag>
+        <include target-screen="CreateAssetDialog" target-source="center"/>
+    </tag>
+</screen>
