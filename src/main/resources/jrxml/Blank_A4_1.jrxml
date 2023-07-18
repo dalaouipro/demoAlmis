@@ -50,7 +50,7 @@
 		<band height="82" splitType="Stretch">
 			<image>
 				<reportElement x="-10" y="10" width="80" height="50" uuid="c3ddba8e-5eb5-4da7-b977-2b3025822fc9"/>
-				<imageExpression><![CDATA["C:/Users/user/Documents/reports/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Users/HP/Documents/JAVA/logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
