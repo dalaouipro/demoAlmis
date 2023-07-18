@@ -71,7 +71,6 @@
 
     <target name="testMaintain">
         <serve service="testMaintain"/>
-
     </target>
 
     <target name="insertCustomer">
@@ -145,4 +144,17 @@
           <variable id="ACTIVE" type="STRING" name="CrtActiveDiaCrt" />
       </insert>
   </target>
+    <target name="insertValuation">
+        <insert>
+            <table id="VALUATION"/>
+            <field id="PRICE" variable="priceVariable"/>
+            <field id="QUANTITY" variable="QuantityVariable"/>
+            <field id="MULTIPLE" variable="MultipleVariable"/>
+            <field id="PRICEDATE" variable="PriceDateVariable"/>
+            <variable id="priceVariable" type="INTEGER" name="price"/>
+            <variable id="QuantityVariable" type="INTEGER" name="quantity"/>
+            <variable id="MultipleVariable" type="INTEGER" name="multiple"/>
+            <variable id="PriceDateVariable" type="INTEGER" name="priceDate"/>
+        </insert>
+    </target>
 </maintain>

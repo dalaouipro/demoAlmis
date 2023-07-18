@@ -14,6 +14,13 @@
         </button>
         <button id="BtnDelAss" label="Delete Asset">
         </button>
+        <button id="BtnTest" label="test">
+            <dependency >
+                <dependency-action type="server" server-action="data"
+                                   target-action="getQuantityPrices"/>
+                <dependency-element id="BtnTest" event="click" />
+            </dependency>
+        </button>
     </tag>
 
     <tag source="center">

@@ -13,6 +13,10 @@
     <service id="servicePrint">
         <java classname="org.example.services.testService" method="print"/>
     </service>
+    <service id="serviceValuation">
+        <java classname="org.example.services.testService" method="valuate"/>
+    </service>
+
 
 
 </services>

@@ -210,22 +210,50 @@
                 <filter left-table="Pr" left-field="ID" condition="eq" right-table="A" right-field="PRODUCT_ID"/>
             </and>
         </join>
-        <join>
+        <join type="LEFT">
             <table id="POSITION" alias="Po"/>
             <and>
-                <filter left-table="Po" left-field="ID" condition="eq" right-table="A" right-field="POSITION_ID"/>
+                <filter left-table="Po" left-field="ASSET_ID" condition="eq" right-table="A" right-field="ID"/>
             </and>
         </join>
-        <join>
+        <join type="LEFT">
             <table id="PORTFOLIO" alias="P"/>
             <and>
-                <filter left-table="P" left-field="POSITION_ID" condition="eq" right-table="A" right-field="POSITION_ID"/>
+                <filter left-table="P" left-field="PORTFOLIO_ID" condition="eq" right-table="Po" right-field="PORTFOLIO_ID"/>
             </and>
         </join>
-        <join>
+        <join type="LEFT">
             <table id="CONTRACT" alias="C"/>
             <and>
                 <filter left-table="C" left-field="PORTFOLIO_ID" condition="eq" right-table="P" right-field="PORTFOLIO_ID"/>
+            </and>
+        </join>
+    </query>
+    <query id="getQuantityPrices" service="serviceValuation">
+    </query>
+    <query id="getQuantityPrice">
+        <table id="PRICE" alias="Pr"/>
+        <field id="PRICE" table="Pr"/>
+        <field id="QUANTITY" table="Por"/>
+        <field id="PORTFOLIO_ID" table="Por"/>
+        <field id="DATE" table="Pr"/>
+        <field id="ASSET_ID" table="Pr"/>
+        <join type="LEFT">
+            <table id="ASSETS" alias="A"/>
+            <and>
+                <filter left-table="A" left-field="ID" condition="eq" right-table="Pr" right-field="ASSET_ID"/>
+            </and>
+        </join>
+        <join type="LEFT">
+            <table id="POSITION" alias="Po"/>
+            <and>
+                <filter left-table="Po" left-field="ASSET_ID" condition="eq" right-table="A" right-field="ID"/>
+            </and>
+        </join>
+        <join type="LEFT">
+            <table id="PORTFOLIO" alias="Por"/>
+            <and>
+                <filter left-table="Por" left-field="PORTFOLIO_ID" condition="eq" right-table="Po" right-field="PORTFOLIO_ID"/>
             </and>
         </join>
     </query>
