@@ -14,12 +14,14 @@
         </button>
         <button id="BtnDelAss" label="Delete Asset">
         </button>
-        <button id="BtnTest" label="test">
-            <dependency >
+        <button id="BtnTest" label="insert valuation">
+            <dependency>
                 <dependency-action type="server" server-action="data"
                                    target-action="getQuantityPrices"/>
                 <dependency-element id="BtnTest" event="click" />
             </dependency>
+            <!--<button-action type="server" server-action="data" target-action="getValuations"/>
+            <button-action type="filter" target="GrdValuation"/>-->
         </button>
     </tag>
 
@@ -50,7 +52,39 @@
                     <column label="Currency" name="ColCurrency"  align="center" charlength="20" component="text-view" />
                     <column label="Instrument" name="ColInstrument" align="center" charlength="20" component="text-view"/>
                     <column label="Product" name="ColProduct" align="center" charlength="20" component="text-view"/>
+                    <column label="Country" name="ColCountry" align="center" charlength="20" component="text-view"/>
                 </grid>
+            </window>
+            <window style="expand" maximize="true" expandible="vertical">
+                <grid id="GrdValuation" style="expand" max="30" multiselect="true" server-action="data" initial-load="query"
+                      target-action="getValuations" autoload="true" checkbox-multiselect="false">
+                    <column label="valuation_id" name="Colvaluation_id" align="left" charlength="10" style="separator" />
+                    <column label="asset_id" name="Colasset_id" align="center" charlength="20"/>
+                    <column label="price" name="Colprice" align="center" charlength="20" />
+                    <column label="quantity" name="Colquantity"  align="center" charlength="20" component="text-view"  />
+                    <column label="multiple" name="Colmultiple"  align="center" charlength="20" component="text-view" />
+                </grid>
+            </window>
+            <window label="PRICING_LINE_CHART" maximize="true" icon="line-chart" style="expand">
+                <chart id="ChrLinTst" label="PRICING CHART" type="line" theme="dark-unica" initial-load="query" target-action="priceByDateChart" zoom-type="xAxis" max="30" >
+                    <chart-legend label="Leyenda" verticalAlign="middle" align="right" border-width="1"/>
+                    <x-axis label="Pricing Date" type="datetime"/>
+                    <y-axis label="Price"/>
+                    <chart-tooltip crosshairs="xAxis" suffix=" $" number-decimals="1"/>
+                    <chart-serie id="price" x-value="dates" y-value="price" label="price" color="#0080FF"/>
+                   <context-button id="CtxLinTstRef" label="BUTTON_RELOAD" icon="refresh">
+                        <button-action type="server" server-action="data" target-action="priceByDateChart" target="ChrLinTst"/>
+                   </context-button>
+                </chart>
+            </window>
+            <window label="SCREEN_TEXT_DONUT_CHART" icon="pie-chart" maximize="true" style="expand">
+                <chart id="ChrDonutTst" label="Grafico 7" type="donut_3d" initial-load="query" target-action="assetsByPriceChar" max="5">
+                    <chart-legend enabled="true"/>
+                    <x-axis label="Themes"/>
+                    <y-axis label="Percent (%)"/>
+                    <chart-tooltip suffix=" %" number-decimals="2"/>
+                    <chart-serie id="div" x-value="names" y-value="div" label="Themes" />
+                </chart>
             </window>
         </tag>
         <include target-screen="CreateAssetDialog" target-source="center"/>

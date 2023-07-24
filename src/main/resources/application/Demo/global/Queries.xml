@@ -204,6 +204,7 @@
         <field id="CONTRACT_NAME" table="C" alias="ColContract"/>
         <field id="NAME" table="Pr" alias="ColProduct"/>
         <field id="ACTIVE" table="A" alias="ColActive" />
+        <field id="NAME" table="Co" alias="ColCountry"/>
         <join>
             <table id="PRODUCT" alias="Pr"/>
             <and>
@@ -228,6 +229,20 @@
                 <filter left-table="C" left-field="PORTFOLIO_ID" condition="eq" right-table="P" right-field="PORTFOLIO_ID"/>
             </and>
         </join>
+        <join type="LEFT">
+            <table id="COUNTRY" alias="Co"/>
+            <and>
+                <filter left-table="Co" left-field="ID" condition="eq" right-table="A" right-field="COUNTRY_ID"/>
+            </and>
+        </join>
+        <where>
+            <and>
+                <filter condition="eq" left-table="C" left-field="CONTRACT_ID" right-variable="VarContract" optional="true"/>
+                <filter condition="eq" left-field="ID" left-table="Pr" right-variable="VarProduct" optional="true"/>
+            </and>
+        </where>
+        <variable id="VarContract" type="INTEGER" name="CrtContract" optional="true"/>
+        <variable id="VarProduct" type="INTEGER" name="CrtProduct" optional="true"/>
     </query>
     <query id="getQuantityPrices" service="serviceValuation">
     </query>
@@ -256,5 +271,39 @@
                 <filter left-table="Por" left-field="PORTFOLIO_ID" condition="eq" right-table="Po" right-field="PORTFOLIO_ID"/>
             </and>
         </join>
+    </query>
+    <!-- charts line query -->
+    <query id="priceByDateChart" distinct="true">
+        <table id="PRICE"/>
+        <field id="PRICE" alias="price"/>
+        <field id="DATE" transform="DATE_MS" alias="dates"/>
+        <order-by field="DATE" type="ASC"/>
+    </query>
+    <!-- -->
+    <query id="getSumPrice">
+        <table id="PRICE" alias="P"/>
+        <field id="PRICE" table="P" function="SUM" alias="sumPrice"/>
+    </query>
+    <query id="assetsByPriceChar" distinct="true">
+        <table id="PRICE" alias="P"/>
+        <field id="NAME" alias="names" table="A"/>
+        <operation operator="DIV" alias="div">
+            <operation operator="MULT">
+                <operation operator="COALESCE">
+                    <field id="PRICE" table="P" alias="price"/>
+                    <constant value="0"/>
+                </operation>
+                <constant value="100"/>
+            </operation>
+            <field query="getSumPrice"/>
+        </operation>
+        <join>
+            <table id="ASSETS" alias="A"/>
+            <and>
+                <filter condition="eq" left-field="ID" left-table="A" right-table="P" right-field="ASSET_ID"/>
+            </and>
+        </join>
+    </query>
+    <query id="getValuations" service="ValuationService">
     </query>
 </queries>

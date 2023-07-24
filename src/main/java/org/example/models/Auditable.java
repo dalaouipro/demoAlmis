@@ -15,19 +15,19 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class Auditable {
 
     @CreatedBy
-    @Column
+    @Column(updatable = false)
     protected String createdBy;
 
     @CreatedDate
-    @Column
+    @Column(updatable = false)
     protected Date createdDate;
 
     @LastModifiedBy
-    @Column
+    @Column(updatable = true)
     protected String lastModifiedBy;
 
     @LastModifiedDate
-    @Column
+    @Column(updatable = true)
     protected Date lastModifiedDate;
 
 }

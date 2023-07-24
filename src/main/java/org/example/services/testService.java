@@ -51,7 +51,7 @@ public class testService extends ServiceConfig {
            Optional<Valuation> val = valuationRepo.findByAsset_id(element.getAsset_id(),element.getPricedate());
            if(!val.isPresent())  valuationList.add(element);
            else{
-               if(element.getPrice() != val.get().getPrice()) {
+               if(!Objects.equals(element.getPrice(), val.get().getPrice())) {
                    valuationList.add(element);
                }
            }

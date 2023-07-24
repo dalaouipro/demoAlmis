@@ -16,6 +16,9 @@
     <service id="serviceValuation">
         <java classname="org.example.services.testService" method="valuate"/>
     </service>
+    <service id="ValuationService">
+        <java classname="org.example.services.ValuationService" method="getValuation"/>
+    </service>
 
 
 
