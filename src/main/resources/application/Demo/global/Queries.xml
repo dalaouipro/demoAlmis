@@ -141,13 +141,13 @@
         <field id="NAME" alias="lblType" table="CT"/>
         <compound alias="ColName">
             <computed alias="value" format="[idType]"/>
-            <computed alias="value" format="[lblLogin]"/>
+            <computed alias="label" format="[lblType]"/>
         </compound>
         <field id="CATEGORY_ID" alias="idCat" table="CC"/>
         <field id="NAME" alias="lblCar" table="CC"/>
         <compound alias="ColNameCat">
             <computed alias="value" format="[idCat]"/>
-            <computed alias="value" format="[lblCar]"/>
+            <computed alias="label" format="[lblCar]"/>
         </compound>
         <join type="LEFT">
             <table id="USERS" alias="U"/>
