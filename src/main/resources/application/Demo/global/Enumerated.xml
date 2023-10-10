@@ -50,4 +50,14 @@
         <option label="Active"  value="Active" />
         <option label="Desactive"  value="Desactive"/>
     </group>
+    <group id="drissLetters">
+        <option label="A" value="A"/>
+        <option label="B" value="B"/>
+        <option label="C" value="C"/>
+    </group>
+    <group id="drissUsers">
+        <option label="user1" value="user1"/>
+        <option label="user2" value="user2"/>
+        <option label="user3" value="user3"/>
+    </group>
 </enumerated>

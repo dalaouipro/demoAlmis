@@ -306,4 +306,33 @@
     </query>
     <query id="getValuations" service="ValuationService">
     </query>
+    <query id="drissUsers">
+        <table id="DRISS1"/>
+        <field id="id" alias="value"/>
+        <field id="name" alias="label"/>
+    </query>
+    <query id="driss2Query">
+        <table id="driss2" alias="D2"/>
+        <field id="COL1" table="D2"/>
+        <field id="COL2" table="D2"/>
+        <field id="COL3" table="D2"/>
+    </query>
+    <query id="driss3Query">
+        <table id="driss2" alias="d2"/>
+        <field id="id" table="d2"/>
+        <field id="col2" table="d2"/>
+        <field id="name" table="d3"/>
+        <join type="RIGHT">
+            <table id="driss3" alias="d3"/>
+            <and>
+                <filter left-table="d2" left-field="id" condition="gt" right-table="d3" right-field="id"/>
+            </and>
+        </join>
+        <where>
+            <and>
+                <filter left-table="d3" left-field="id" condition="eq" right-variable="varDriss"/>
+            </and>
+        </where>
+        <variable id="varDriss" type="INTEGER" value="2"/>
+    </query>
 </queries>

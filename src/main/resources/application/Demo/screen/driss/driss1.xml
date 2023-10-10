@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : driss1.xml
+    Author     : Driss ALAOUI
+    Description: Private profile options
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
+    <tag source="buttons">
+        <button id="butDriss11" label="button 1" size="sm" help="my help text 1">
+            <button-action type="screen" target="driss2"/>
+        </button>
+        <button id="butDriss12" label="button 2" size="md" icon="cog" ></button>
+        <button id="butDriss13" label="button 3" size="lg" ></button>
+    </tag>
+    <tag source="center">
+        <window label="stuff 1">
+            <criteria component="text" id="crit1" label="criteria 1"></criteria>
+            <criteria component="password" id="pass1" label="password 1"></criteria>
+            <criteria component="select-multiple" id="select1" label="select 1" icon="fa-i-cursor" initial-load="enum" target-action="drissLetters"></criteria>
+            <criteria component="suggest-multiple" id="suggest1" label="suggest 1" icon="user" initial-load="query" target-action="drissUsers"></criteria>
+        </window>
+        <window label="stuff 2">
+            <grid id="driss2Grid" initial-load="query" target-action="driss2Query" style="expand" max="3">
+                <column name="COL1" label="column 1"/>
+                <column name="COL2" label="column 2"/>
+                <column name="COL3" label="column 3"/>
+            </grid>
+        </window>
+
+        <window label="stuff 3">
+            <grid id="driss3Grid" initial-load="query" target-action="driss3Query" style="expand" max="3">
+                <column name="id" label="id"/>
+                <column name="col2" label="letters"/>
+                <column name="name" label="greeting"/>
+            </grid>
+        </window>
+    </tag>
+
+</screen>

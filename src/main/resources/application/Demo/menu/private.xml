@@ -73,4 +73,9 @@
     <option name="position" label="Position" screen="" />
     <option name="customer" label="Customer" screen="page" />
   </option>
+  <option name="driss" label="driss">
+    <option name="driss1" label="driss1" screen="driss1"/>
+    <option name="driss2" label="driss2" screen="driss2"/>
+    <option name="driss3" label="driss3" screen="driss3"/>
+  </option>
 </menu>

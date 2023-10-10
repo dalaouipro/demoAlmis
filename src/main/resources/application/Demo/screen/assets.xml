@@ -30,7 +30,7 @@
             <tag type="div" style="panel-body expand-maximize">
                 <criteria placeholder="currency" component="suggest"  id="CrtCurrency" label="currency" style="col-xs-6 col-sm-4 col-md-2"/>
                 <criteria placeholder="contract" component="suggest" id="CrtContract" label="contract" initial-load="query" target-action="getContract" style="col-xs-6 col-sm-4 col-md-2" />
-                <criteria placeholder="product" component="suggest" initial-load="query" target-action="getProduct" id="CrtProduct" label="product"  style="col-xs-6 col-sm-4 col-md-2" />
+                <criteria placeholder="product" component="suggest" id="CrtProduct" label="product"  initial-load="query" target-action="getProduct" style="col-xs-6 col-sm-4 col-md-2" />
                 <criteria placeholder="active" component="select" label="Active" initial-load="enum" target-action="enumActive" id="CrtActive" style="col-xs-6 col-sm-4 col-md-2" />
                 <criteria placeholder="description" component="suggest"  id="CrtDescription"  label="description" style="col-xs-6 col-sm-4 col-md-2" />
             </tag>
