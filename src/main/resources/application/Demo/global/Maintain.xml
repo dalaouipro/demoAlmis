@@ -186,11 +186,11 @@
                     <filter left-field="IDEORECFGETT" condition="eq" right-variable="varUpdate2"/>
                 </and>
             </where>
-            <variable id="varUpdate2" type="INTEGER" name="colId.selected"/>
+            <variable id="varUpdate2" type="INTEGER" name="colEstSId.selected"/>
             <variable id="varETT" type="STRING" name="crtUpdEntidad" />
             <variable id="varTYPETT" type="STRING" name="crtUpdTipoEntidad" />
             <variable id="varDESETT" type="STRING" name="crtUpdDescripcion" />
-            <variable id="varNUMREG" type="STRING" name="crtUpdnumeroRegistro" />
+            <variable id="varNUMREG" type="STRING" name="crtUpdNumeroRegistro" />
             <variable id="varNIF" type="STRING" name="crtUpdNif"/>
         </update>
     </target>
@@ -201,7 +201,24 @@
             <where>
                 <filter left-table="ORECFGETT" left-field="IDEORECFGETT" condition="eq" right-variable="varDelete"/>
             </where>
-            <variable id="varDelete" type="INTEGER" name="colId"/>
+            <variable id="varDelete" type="INTEGER" name="colEstSId"/>
         </delete>
+    </target>
+    <target name="maintainMultipleEstatico">
+        <multiple grid="gridEditableEstatico">
+            <table id="ORECFGETT"/>
+            <field id="IDEORECFGETT" key="true" sequence="idOreEdit" variable="varId"/>
+            <field id="ETT" variable="varETT"/>
+            <field id="TYPETT" variable="varTYPETT" />
+            <field id="DESETT" variable="varDESETT" />
+            <field id="NUMREG" variable="varNUMREG" />
+            <field id="NIF" variable="varNIF"/>
+            <variable id="varId" type="INTEGER" name="colEstEId"/>
+            <variable id="varETT" type="STRING" name="colEstEEntidad"/>
+            <variable id="varTYPETT" type="STRING" name="colEstETipoEntidad"/>
+            <variable id="varDESETT" type="STRING" name="colEstEDescripcion"/>
+            <variable id="varNUMREG" type="STRING" name="colEstENumeroRegistro"/>
+            <variable id="varNIF" type="STRING" name="colEstENif"/>
+        </multiple>
     </target>
 </maintain>

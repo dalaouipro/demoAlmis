@@ -357,14 +357,14 @@
         </where>
         <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
     </query>
-    <query id="querygridEstatico1">
+    <query id="queryGridSimpleEstatico">
         <table id="ORECFGETT" alias="ore"/>
-        <field id="IDEORECFGETT" alias="colId"/>
-        <field id="ETT" alias="colEntidad"/>
-        <field id="DESETT" alias="colDescripcion"/>
-        <field id="TYPETT" alias="colTipoEntidad"/>
-        <field id="NUMREG" alias="colnumeroRegistro"/>
-        <field id="NIF" alias="colNif"/>
+        <field id="IDEORECFGETT" alias="colEstSId"/>
+        <field id="ETT" alias="colEstSEntidad"/>
+        <field id="DESETT" alias="colEstSDescripcion"/>
+        <field id="TYPETT" alias="colEstSTipoEntidad"/>
+        <field id="NUMREG" alias="colEstSNumeroRegistro"/>
+        <field id="NIF" alias="colEstSNif"/>
         <where>
             <and>
                 <filter left-variable="varCheckbox" condition="eq" right-variable="varCompare" optional="true"/>
@@ -382,13 +382,33 @@
         <field id="ETT" alias="crtUpdEntidad"/>
         <field id="DESETT" alias="crtUpdDescripcion"/>
         <field id="TYPETT" alias="crtUpdTipoEntidad"/>
-        <field id="NUMREG" alias="crtUpdnumeroRegistro"/>
+        <field id="NUMREG" alias="crtUpdNumeroRegistro"/>
         <field id="NIF" alias="crtUpdNif"/>
         <where>
             <and>
                 <filter left-table="ore" left-field="IDEORECFGETT" condition="eq" right-variable="varUpdate"/>
             </and>
         </where>
-        <variable id="varUpdate" type="INTEGER" name="colId.selected"/>
+        <variable id="varUpdate" type="INTEGER" name="colEstSId.selected"/>
+    </query>
+    <query id="queryGridEditableEstatico">
+        <table id="ORECFGETT" alias="ore"/>
+        <field id="IDEORECFGETT" alias="colEstEId"/>
+        <field id="ETT" alias="colEstEEntidad"/>
+        <field id="DESETT" alias="colEstEDescripcion"/>
+        <field id="TYPETT" alias="colEstETipoEntidad"/>
+        <field id="NUMREG" alias="colEstENumeroRegistro"/>
+        <field id="NIF" alias="colEstENif"/>
+        <where>
+            <and>
+                <filter left-variable="varCheckbox" condition="eq" right-variable="varCompare" optional="true"/>
+                <filter left-table="ore" left-field="ETT" condition="eq" right-variable="VarEtt" optional="true"/>
+                <filter left-table="ore" left-field="TYPETT" condition="eq" right-variable="VarTypett" optional="true"/>
+            </and>
+        </where>
+        <variable id="varCheckbox" type="INTEGER" name="checkboxActivo" optional="true"/>
+        <variable id="varCompare" type="INTEGER" value="1" optional="true"/>
+        <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
+        <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
     </query>
 </queries>
