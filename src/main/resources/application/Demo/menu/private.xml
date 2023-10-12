@@ -78,4 +78,7 @@
     <option name="driss2" label="driss2" screen="driss2"/>
     <option name="driss3" label="driss3" screen="driss3"/>
   </option>
+  <option name="estatico0" label="Estatico">
+    <option name="estatico" label="Estatico" screen="estatico"/>
+  </option>
 </menu>

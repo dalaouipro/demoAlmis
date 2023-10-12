@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : driss1.xml
+    Author     : Driss ALAOUI
+    Description: pageDialog
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
+    <tag source="modal">
+        <dialog id="driss1Dialog" modal="true" label="Dialogue window" icon="info-circle">
+            <criteria component="text" id="figure" label="figure"/>
+            <criteria component="text" id="couleur" label="couleur"/>
+            <button id="butdrissDialog1" label="Cancel" icon="close">
+<!--                <button-action type="close" target=""-->
+            </button>
+        </dialog>
+    </tag>
+
+</screen>

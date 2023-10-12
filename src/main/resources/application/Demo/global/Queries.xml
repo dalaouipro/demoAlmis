@@ -335,4 +335,60 @@
         </where>
         <variable id="varDriss" type="INTEGER" value="2"/>
     </query>
+    <query id="queryTipoEntidad" distinct="true">
+        <table id="ORECFGETT" alias="ore"/>
+        <field id="TYPETT" alias="value"/>
+        <field id="TYPETT" alias="label"/>
+        <where>
+            <and>
+                <filter condition="in" left-table="ore" left-field="ETT" right-variable="VarEtt" optional="true"/>
+            </and>
+        </where>
+        <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
+    </query>
+    <query id="queryEntidad" distinct="true">
+        <table id="ORECFGETT" alias="ore"/>
+        <field id="ETT" alias="value"/>
+        <field id="ETT" alias="label"/>
+        <where>
+            <and>
+                <filter condition="eq" left-table="ore" left-field="TYPETT" right-variable="VarTypett" optional="true"/>
+            </and>
+        </where>
+        <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
+    </query>
+    <query id="querygridEstatico1">
+        <table id="ORECFGETT" alias="ore"/>
+        <field id="IDEORECFGETT" alias="colId"/>
+        <field id="ETT" alias="colEntidad"/>
+        <field id="DESETT" alias="colDescripcion"/>
+        <field id="TYPETT" alias="colTipoEntidad"/>
+        <field id="NUMREG" alias="colnumeroRegistro"/>
+        <field id="NIF" alias="colNif"/>
+        <where>
+            <and>
+                <filter left-variable="varCheckbox" condition="eq" right-variable="varCompare" optional="true"/>
+                <filter left-table="ore" left-field="ETT" condition="eq" right-variable="VarEtt" optional="true"/>
+                <filter left-table="ore" left-field="TYPETT" condition="eq" right-variable="VarTypett" optional="true"/>
+            </and>
+        </where>
+        <variable id="varCheckbox" type="INTEGER" name="checkboxActivo" optional="true"/>
+        <variable id="varCompare" type="INTEGER" value="1" optional="true"/>
+        <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
+        <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
+    </query>
+    <query id="updateEstatico">
+        <table id="ORECFGETT" alias="ore"/>
+        <field id="ETT" alias="crtUpdEntidad"/>
+        <field id="DESETT" alias="crtUpdDescripcion"/>
+        <field id="TYPETT" alias="crtUpdTipoEntidad"/>
+        <field id="NUMREG" alias="crtUpdnumeroRegistro"/>
+        <field id="NIF" alias="crtUpdNif"/>
+        <where>
+            <and>
+                <filter left-table="ore" left-field="IDEORECFGETT" condition="eq" right-variable="varUpdate"/>
+            </and>
+        </where>
+        <variable id="varUpdate" type="INTEGER" name="colId.selected"/>
+    </query>
 </queries>

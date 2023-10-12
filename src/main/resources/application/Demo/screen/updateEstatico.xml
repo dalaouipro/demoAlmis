@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : updateEstatico.xml
+    Description: Update Estatico dialog
+-->
+
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="modal">
+        <dialog id="updateEstaticoDia" label="Modificar Estatico" icon="info-circle">
+            <tag type="div" style="modal-body scrollable">
+                <criteria placeholder="Entidad" component="text"  id="crtUpdEntidad" label="Entidad"/>
+                <criteria placeholder="Descripcion" component="text" id="crtUpdDescripcion" label="Descripcion"/>
+                <criteria placeholder="Tipo de entidad" component="select" initial-load="enum" target-action="tipoEntidad" id="crtUpdTipoEntidad" label="Tipo de entidad"/>
+                <criteria placeholder="Numero de registro" component="text"  id="crtUpdnumeroRegistro" label="Numero de registro"/>
+                <criteria placeholder="Nif" component="text"  id="crtUpdNif" label="Nif"/>
+            </tag>
+            <tag type="div" style="modal-footer">
+                <tag type="div" style="pull-right">
+                    <button label="Annular" icon="close" id="ButUpdateEstaticoCancel">
+                        <button-action type="close" target="updateEstaticoDia"/>
+                    </button>
+                    <button label="Acceptar" icon="check" id="ButUpdateEstaticoOk" button-type="submit">
+                        <button-action type="server" server-action="maintain" target-action="maintainUpdateEstatico"/>
+                        <button-action type="filter" target="gridEstatico1"/>
+                        <button-action type="reset" target="updateEstaticoDia"/>
+                        <button-action type="close" target="updateEstaticoDia"/>
+                    </button>
+                </tag>
+            </tag>
+        </dialog>
+    </tag>
+</screen>

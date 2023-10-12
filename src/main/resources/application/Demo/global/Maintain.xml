@@ -157,4 +157,51 @@
             <variable id="PriceDateVariable" type="INTEGER" name="priceDate"/>
         </insert>
     </target>
+    <target name="maintainCreateEstatico">
+        <insert>
+            <table id="ORECFGETT"/>
+            <field id="IDEORECFGETT" sequence="idOre" />
+            <field id="ETT" variable="ETT" />
+            <field id="TYPETT" variable="TYPETT" />
+            <field id="DESETT" variable="DESETT" />
+            <field id="NUMREG" variable="NUMREG" />
+            <field id="NIF" variable="NIF" />
+            <variable id="ETT" type="STRING" name="createEstaticoEntidad" />
+            <variable id="TYPETT" type="STRING" name="createEstaticoTipoEntidad" />
+            <variable id="DESETT" type="STRING" name="createEstaticoDescripcion" />
+            <variable id="NUMREG" type="STRING" name="createEstaticoNumeroRegistro" />
+            <variable id="NIF" type="STRING" name="createEstaticoNif" />
+        </insert>
+    </target>
+    <target name="maintainUpdateEstatico">
+        <update>
+            <table id="ORECFGETT"/>
+            <field id="ETT" variable="varETT" />
+            <field id="TYPETT" variable="varTYPETT" />
+            <field id="DESETT" variable="varDESETT" />
+            <field id="NUMREG" variable="varNUMREG" />
+            <field id="NIF" variable="varNIF"/>
+            <where>
+                <and>
+                    <filter left-field="IDEORECFGETT" condition="eq" right-variable="varUpdate2"/>
+                </and>
+            </where>
+            <variable id="varUpdate2" type="INTEGER" name="colId.selected"/>
+            <variable id="varETT" type="STRING" name="crtUpdEntidad" />
+            <variable id="varTYPETT" type="STRING" name="crtUpdTipoEntidad" />
+            <variable id="varDESETT" type="STRING" name="crtUpdDescripcion" />
+            <variable id="varNUMREG" type="STRING" name="crtUpdnumeroRegistro" />
+            <variable id="varNIF" type="STRING" name="crtUpdNif"/>
+        </update>
+    </target>
+    <target name="maintainDeleteEstatico">
+        <delete>
+            <table id="ORECFGETT"/>
+            <field id="IDEORECFGETT"/>
+            <where>
+                <filter left-table="ORECFGETT" left-field="IDEORECFGETT" condition="eq" right-variable="varDelete"/>
+            </where>
+            <variable id="varDelete" type="INTEGER" name="colId"/>
+        </delete>
+    </target>
 </maintain>

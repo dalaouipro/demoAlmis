@@ -60,4 +60,17 @@
         <option label="user2" value="user2"/>
         <option label="user3" value="user3"/>
     </group>
+    <group id="tabEstatico">
+        <option label="Simple Grid" value="Simple"/>
+        <option label="Editable Grid" value="Editable"/>
+</group>
+    <group id="tipoEntidad">
+        <option label="EAFI" value="EAFI"/>
+        <option label="ECR" value="ECR"/>
+        <option label="IIC" value="IIC"/>
+        <option label="SAV" value="SAV"/>
+        <option label="SAVGRP" value="SAVGRP"/>
+        <option label="SGECR" value="SGECR"/>
+        <option label="SGIIC" value="SGIIC"/>
+    </group>
 </enumerated>
