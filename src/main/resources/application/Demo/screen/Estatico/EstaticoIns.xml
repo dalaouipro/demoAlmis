@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : createEstatico.xml
+    Document   : EstaticoIns.xml
     Description: Create Estatico dialog
 -->
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
@@ -10,7 +10,7 @@
             <tag type="div" style="modal-body scrollable">
                 <criteria placeholder="Entidad" component="text"  id="createEstaticoEntidad" label="Entidad"/>
                 <criteria placeholder="Descripcion" component="text" id="createEstaticoDescripcion" label="Descripcion"/>
-                <criteria placeholder="Tipo de entidad" component="select" initial-load="enum" target-action="tipoEntidad" id="createEstaticoTipoEntidad" label="Tipo de entidad"/>
+                <criteria placeholder="Tipo de entidad" component="select" initial-load="enum" target-action="EnumTypEtt" id="createEstaticoTipoEntidad" label="Tipo de entidad"/>
                 <criteria placeholder="Numero de registro" component="text"  id="createEstaticoNumeroRegistro" label="Numero de registro"/>
                 <criteria placeholder="Nif" component="text"  id="createEstaticoNif" label="Nif"/>
             </tag>
@@ -20,8 +20,8 @@
                         <button-action type="close" target="CreateEstaticoDialog"/>
                     </button>
                     <button label="Acceptar" icon="check" id="ButCreateEstaticoOk" button-type="submit">
-                        <button-action type="server" server-action="maintain" target-action="maintainCreateEstatico"/>
-                        <button-action type="filter" target="gridSimpleEstatico"/>
+                        <button-action type="server" server-action="maintain" target-action="MntnEstIns"/>
+                        <button-action type="filter" target="gridEstS"/>
                         <button-action type="reset" target="CreateEstaticoDialog"/>
                         <button-action type="close" target="CreateEstaticoDialog"/>
                     </button>

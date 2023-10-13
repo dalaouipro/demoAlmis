@@ -157,7 +157,7 @@
             <variable id="PriceDateVariable" type="INTEGER" name="priceDate"/>
         </insert>
     </target>
-    <target name="maintainCreateEstatico">
+    <target name="MntnEstIns">
         <insert>
             <table id="ORECFGETT"/>
             <field id="IDEORECFGETT" sequence="idOre" />
@@ -173,7 +173,7 @@
             <variable id="NIF" type="STRING" name="createEstaticoNif" />
         </insert>
     </target>
-    <target name="maintainUpdateEstatico">
+    <target name="MtnEstUpd">
         <update>
             <table id="ORECFGETT"/>
             <field id="ETT" variable="varETT" />
@@ -194,7 +194,7 @@
             <variable id="varNIF" type="STRING" name="crtUpdNif"/>
         </update>
     </target>
-    <target name="maintainDeleteEstatico">
+    <target name="MtnEstDel">
         <delete>
             <table id="ORECFGETT"/>
             <field id="IDEORECFGETT"/>
@@ -204,8 +204,8 @@
             <variable id="varDelete" type="INTEGER" name="colEstSId"/>
         </delete>
     </target>
-    <target name="maintainMultipleEstatico">
-        <multiple grid="gridEditableEstatico">
+    <target name="MtnEstMul">
+        <multiple grid="gridEstE">
             <table id="ORECFGETT"/>
             <field id="IDEORECFGETT" key="true" sequence="idOreEdit" variable="varId"/>
             <field id="ETT" variable="varETT"/>

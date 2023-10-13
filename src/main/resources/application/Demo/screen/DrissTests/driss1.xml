@@ -42,7 +42,4 @@
         </window>
 
     </tag>
-    <tag source="modal">
-        <include target-screen="createEstatico" target-source="modal"/>
-    </tag>
 </screen>

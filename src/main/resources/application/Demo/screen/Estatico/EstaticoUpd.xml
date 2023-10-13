@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : updateEstatico.xml
+    Document   : QuerGridEstSUpd.xml
     Description: Update Estatico dialog
 -->
 
@@ -15,7 +15,7 @@
             <tag type="div" style="modal-body scrollable">
                 <criteria placeholder="Entidad" component="text"  id="crtUpdEntidad" label="Entidad"/>
                 <criteria placeholder="Descripcion" component="text" id="crtUpdDescripcion" label="Descripcion"/>
-                <criteria placeholder="Tipo de entidad" component="select" initial-load="enum" target-action="tipoEntidad" id="crtUpdTipoEntidad" label="Tipo de entidad"/>
+                <criteria placeholder="Tipo de entidad" component="select" initial-load="enum" target-action="EnumTypEtt" id="crtUpdTipoEntidad" label="Tipo de entidad"/>
                 <criteria placeholder="Numero de registro" component="text"  id="crtUpdNumeroRegistro" label="Numero de registro"/>
                 <criteria placeholder="Nif" component="text"  id="crtUpdNif" label="Nif"/>
             </tag>
@@ -25,8 +25,8 @@
                         <button-action type="close" target="updateEstaticoDia"/>
                     </button>
                     <button label="Acceptar" icon="check" id="ButUpdateEstaticoOk" button-type="submit">
-                        <button-action type="server" server-action="maintain" target-action="maintainUpdateEstatico"/>
-                        <button-action type="filter" target="gridSimpleEstatico"/>
+                        <button-action type="server" server-action="maintain" target-action="MtnEstUpd"/>
+                        <button-action type="filter" target="gridEstS"/>
                         <button-action type="reset" target="updateEstaticoDia"/>
                         <button-action type="close" target="updateEstaticoDia"/>
                     </button>

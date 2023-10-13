@@ -63,8 +63,9 @@
     <group id="tabEstatico">
         <option label="Simple Grid" value="Simple"/>
         <option label="Editable Grid" value="Editable"/>
+        <option label="Date Grid" value="DateG"/>
 </group>
-    <group id="tipoEntidad">
+    <group id="EnumTypEtt">
         <option label="EAFI" value="EAFI"/>
         <option label="ECR" value="ECR"/>
         <option label="IIC" value="IIC"/>

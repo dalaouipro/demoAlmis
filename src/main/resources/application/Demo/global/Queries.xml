@@ -335,7 +335,7 @@
         </where>
         <variable id="varDriss" type="INTEGER" value="2"/>
     </query>
-    <query id="queryTipoEntidad" distinct="true">
+    <query id="QuerEstTypEtt" distinct="true">
         <table id="ORECFGETT" alias="ore"/>
         <field id="TYPETT" alias="value"/>
         <field id="TYPETT" alias="label"/>
@@ -346,7 +346,7 @@
         </where>
         <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
     </query>
-    <query id="queryEntidad" distinct="true">
+    <query id="QuerEstEtt" distinct="true">
         <table id="ORECFGETT" alias="ore"/>
         <field id="ETT" alias="value"/>
         <field id="ETT" alias="label"/>
@@ -357,7 +357,7 @@
         </where>
         <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
     </query>
-    <query id="queryGridSimpleEstatico">
+    <query id="QuerGridEstS">
         <table id="ORECFGETT" alias="ore"/>
         <field id="IDEORECFGETT" alias="colEstSId"/>
         <field id="ETT" alias="colEstSEntidad"/>
@@ -377,7 +377,7 @@
         <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
         <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
     </query>
-    <query id="updateEstatico">
+    <query id="QuerGridEstSUpd">
         <table id="ORECFGETT" alias="ore"/>
         <field id="ETT" alias="crtUpdEntidad"/>
         <field id="DESETT" alias="crtUpdDescripcion"/>
@@ -391,7 +391,7 @@
         </where>
         <variable id="varUpdate" type="INTEGER" name="colEstSId.selected"/>
     </query>
-    <query id="queryGridEditableEstatico">
+    <query id="QuerGridEstE">
         <table id="ORECFGETT" alias="ore"/>
         <field id="IDEORECFGETT" alias="colEstEId"/>
         <field id="ETT" alias="colEstEEntidad"/>
@@ -410,5 +410,21 @@
         <variable id="varCompare" type="INTEGER" value="1" optional="true"/>
         <variable id="VarEtt" type="STRING" name="suggestEntidad" optional="true"/>
         <variable id="VarTypett" type="STRING" name="selectTypoEntidad" optional="true"/>
+    </query>
+    <query id="QuerGridEstD">
+        <table id="ORECFGETT" alias="o"/>
+        <field id="IDEORECFGETT" table="o" alias="colEstDId"/>
+        <field id="ETT" table="o" alias="colEstDEntidad"/>
+        <field id="DESETT" table="o" alias="colEstDDescripcion"/>
+        <field id="TYPETT" table="o" alias="colEstDTipoEntidad"/>
+        <field id="NUMREG" table="o" alias="colEstDNumeroRegistro"/>
+        <field id="NIF" table="o" alias="colEstDNif"/>
+        <field id="mydate" table="m" alias="colEstDdate" transform="DATE"/>
+        <join type="LEFT">
+            <table id="mydates" alias="m"/>
+            <and>
+                <filter left-table="o" left-field="IDEORECFGETT" condition="eq" right-table="m" right-field="id"/>
+            </and>
+        </join>
     </query>
 </queries>

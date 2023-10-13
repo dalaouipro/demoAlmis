@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="buttons">
+
+        <button id="BtnDel" label="Borrar" icon="trash">
+            <button-action type="server" server-action="maintain" target-action="MtnEstDel"/>
+            <button-action type="filter" target="gridEstS"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Simple" />
+            </dependency>
+            <dependency initial="true" target-type="enable" >
+                <dependency-element id="gridEstS" condition="eq" attribute="selectedRows" value="1"/>
+            </dependency>
+        </button>
+        <button id="BtnUpd" label="Modificar" icon="edit">
+            <button-action type="server" server-action="update-model" target-action="QuerGridEstSUpd"/>
+            <button-action type="dialog" target="updateEstaticoDia"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Simple" />
+            </dependency>
+            <dependency initial="true" target-type="enable" >
+                <dependency-element id="gridEstS" condition="eq" attribute="selectedRows" value="1"/>
+            </dependency>
+        </button>
+        <button id="BtnIns" label="Nuevo" icon="plus-square">
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Simple" />
+            </dependency>
+            <button-action type="dialog" target="CreateEstaticoDialog"/>
+        </button>
+
+        <button id="BtnConf" label="Confirmar" icon="check-square">
+            <button-action type="server" server-action="maintain" target-action="MtnEstMul"/>
+            <button-action type="filter" target="gridEstE"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Editable" />
+            </dependency>
+        </button>
+
+        <button id="BtnPrnt" label="Imprimir" icon="print">
+            <button-action type="dialog" target="PrnOpt"/>
+        </button>
+
+    </tag>
+    <tag source="center" expandible="vertical">
+        <tag type="div" style="panel-body static">
+            <criteria component="select-multiple" id="selectTypoEntidad" label="Typo entidad" initial-load="enum" target-action="EnumTypEtt" optional="true" style="col-xs-6 col-sm-3 col-lg-2" />
+            <criteria component="suggest-multiple" id="suggestEntidad" label="Entidad" initial-load="query" target-action="QuerEstEtt" style="col-sm-6 col-md-6 col-lg-3"/>
+            <criteria component="checkbox" id="checkboxActivo" label="Activo" value="1" style="col-xs-1 col-sm-1 col-lg-2"/>
+        </tag>
+        <tag type="div" style="panel-footer">
+            <tag type="div" style="pull-right">
+                <button id="BtnRset" type="button" label="reiniciar" icon="refresh" >
+                    <button-action type="restore" target="selectTypoEntidad" />
+                    <button-action type="restore" target="suggestEntidad" />
+                </button>
+                <button id="BtnSubm" type="submit" label="buscar" icon="search" >
+                    <button-action type="filter" target="gridEstS" />
+                </button>
+            </tag>
+        </tag>
+        <tab id="tabEstatico" initial-load="enum" target-action="tabEstatico">
+            <tabcontainer id="Simple">
+                <grid
+                        id="gridEstS" server-action="data" initial-load="query"
+                        target-action="QuerGridEstS" style="expand">
+                    <column name="colEstSId" label="Id" hidden="true"/>
+                    <column name="colEstSEntidad" label="Entidad"/>
+                    <column name="colEstSDescripcion" label="Descripcion"/>
+                    <column name="colEstSTipoEntidad" label="Tipo Entidad"/>
+                    <column name="colEstSNumeroRegistro" label="numero Registro"/>
+                    <column name="colEstSNif" label="Nif"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Editable">
+                <grid
+                        id="gridEstE" server-action="data" initial-load="query" target-action="QuerGridEstE"
+                        style="expand" editable="true" send-operations="true" send-all="true">
+                    <column name="colEstEId" label="Id" component="text" hidden="true"/>
+                    <column name="colEstEEntidad" component="text" label="Entidad"/>
+                    <column name="colEstEDescripcion" label="Descripcion" component="text"/>
+                    <column name="colEstETipoEntidad" label="Tipo Entidad" component="select" initial-load="enum" target-action="EnumTypEtt"/>
+                    <column name="colEstENumeroRegistro" label="numero Registro" component="text"/>
+                    <column name="colEstENif" label="Nif" component="text"/>
+                    <button id="BtnGridEstEIns" label="BUTTON_NEW" icon="plus-circle">
+                        <button-action type="add-row" target="gridEstE" silent="true"/>
+                    </button>
+                    <button id="BtnGridEstEDel" label="BUTTON_DELETE" icon="trash">
+                        <button-action type="delete-row" target="gridEstE" silent="true"/>
+                        <dependency target-type="enable" initial="true">
+                            <dependency-element id="gridEstE" attribute="selectedRows" condition="ge" value="1" />
+                        </dependency>
+                    </button>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="DateG">
+                <grid
+                        id="gridEstD" initial-load="query" target-action="QuerGridEstD"
+                        style="expand" editable="true">
+                    <column name="colEstDId" label="Id" hidden="true"/>
+                    <column name="colEstDEntidad" component="text" label="Entidad"/>
+                    <column name="colEstDDescripcion" component="text" label="Descripcion"/>
+                    <column name="colEstDTipoEntidad" component="select" initial-load="enum" target-action="EnumTypEtt"/>
+                    <column name="colEstDNumeroRegistro" component="text" label="numero Registro"/>
+                    <column name="colEstDNif" component="text" label="Nif"/>
+                    <column name="colEstDdate" component="date" label="Dato"/>
+                    <button id="BtnGridEstDIns" label="BUTTON_NEW" icon="plus-circle">
+                        <button-action type="add-row" target="gridDstE" silent="true"/>
+                    </button>
+                    <button id="BtnGridEstDDel" label="BUTTON_DELETE" icon="trash">
+                        <button-action type="delete-row" target="gridDstE" silent="true"/>
+                        <dependency target-type="enable" initial="true">
+                            <dependency-element id="gridDstE" attribute="selectedRows" condition="ge" value="1" />
+                        </dependency>
+                    </button>
+                </grid>
+            </tabcontainer>
+        </tab>
+    </tag>
+    <tag source="modal">
+        <include target-screen="EstaticoIns" target-source="modal"/>
+        <include target-screen="EstaticoUpd" target-source="modal"/>
+        <include target-screen="PrnOpt" target-source="center"/>
+    </tag>
+</screen>
