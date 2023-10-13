@@ -221,4 +221,18 @@
             <variable id="varNIF" type="STRING" name="colEstENif"/>
         </multiple>
     </target>
+    <target name="MntnCalIns">
+        <insert>
+            <table id="CALENDAR" alias="c"/>
+            <field id="ID" sequence="idCalendar" />
+            <field id="CODE" variable="varCODE" />
+            <field id="FREZEED" variable="varFREZEED" />
+            <field id="TYPE_OF_DAY" variable="varTYPE_OF_DAY" />
+            <field id="PERIODICITY" variable="varPERIODICITY" />
+            <variable id="varCODE" type="STRING" name="CalInsCode" />
+            <variable id="varFREZEED" type="STRING" name="CalInsFrez" />
+            <variable id="varTYPE_OF_DAY" type="STRING" name="CalInsTyp" />
+            <variable id="varPERIODICITY" type="STRING" name="CalInsPeri" />
+        </insert>
+    </target>
 </maintain>

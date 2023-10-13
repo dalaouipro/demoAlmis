@@ -21,13 +21,13 @@
             <tag type="div" style="modal-footer">
                 <tag type="div" style="pull-right">
                     <button label="BUTTON_CANCEL" icon="close" id="BtnCalDiaInsCancel">
-                        <button-action type="close" target="EstDiaIns"/>
+                        <button-action type="close" target="CalDiaIns"/>
                     </button>
                     <button label="BUTTON_ACCEPT" icon="check" id="BtnCalDiaInsOk" button-type="submit">
-<!--                        <button-action type="server" server-action="maintain" target-action="MntnEstIns"/>-->
+                        <button-action type="server" server-action="maintain" target-action="MntnCalIns"/>
                         <button-action type="filter" target="gridCal"/>
-                        <button-action type="reset" target="EstDiaIns"/>
-                        <button-action type="close" target="EstDiaIns"/>
+                        <button-action type="reset" target="CalDiaIns"/>
+                        <button-action type="close" target="CalDiaIns"/>
                     </button>
                 </tag>
             </tag>

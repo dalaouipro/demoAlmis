@@ -83,6 +83,6 @@
     </tag>
     <tag source="modal">
         <include target-screen="PrnOpt" target-source="center"/>
-        <include target-screen="EstaticoIns" target-source="modal"/>
+        <include target-screen="CalIns" target-source="modal"/>
     </tag>
 </screen>
