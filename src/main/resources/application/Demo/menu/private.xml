@@ -80,5 +80,6 @@
   </option>
   <option name="Estatico0" label="Estatico">
     <option name="Estatico" label="Estatico" screen="Estatico"/>
+    <option name="Calendar" label="Calendar" screen="Calendar"/>
   </option>
 </menu>

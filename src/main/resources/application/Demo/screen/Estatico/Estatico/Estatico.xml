@@ -24,7 +24,7 @@
         </button>
         <button id="BtnUpd" label="Modificar" icon="edit">
             <button-action type="server" server-action="update-model" target-action="QuerGridEstSUpd"/>
-            <button-action type="dialog" target="updateEstaticoDia"/>
+            <button-action type="dialog" target="EstDiaUpd"/>
             <dependency target-type="show" initial="true">
                 <dependency-element id="tabEstatico" condition="eq" value="Simple" />
             </dependency>
@@ -36,7 +36,7 @@
             <dependency target-type="show" initial="true">
                 <dependency-element id="tabEstatico" condition="eq" value="Simple" />
             </dependency>
-            <button-action type="dialog" target="CreateEstaticoDialog"/>
+            <button-action type="dialog" target="EstDiaIns"/>
         </button>
 
         <button id="BtnConf" label="Confirmar" icon="check-square">

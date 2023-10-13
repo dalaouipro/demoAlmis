@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="modal">
+        <dialog id="CalDiaIns" label="Crear Calendar" icon="info-circle">
+            <tag type="div" style="modal-body scrollable">
+                <criteria placeholder="Code" component="text"  id="CalInsCode" label="Code"/>
+                <criteria placeholder="Frezeed" component="text" id="CalInsFrez" label="Frezeed"/>
+                <criteria placeholder="Type of day" component="text" id="CalInsTyp" label="Type of day"/>
+                <criteria placeholder="Periodicity" component="text"  id="CalInsPeri" label="Periodicity"/>
+            </tag>
+            <tag type="div" style="modal-footer">
+                <tag type="div" style="pull-right">
+                    <button label="BUTTON_CANCEL" icon="close" id="BtnCalDiaInsCancel">
+                        <button-action type="close" target="EstDiaIns"/>
+                    </button>
+                    <button label="BUTTON_ACCEPT" icon="check" id="BtnCalDiaInsOk" button-type="submit">
+<!--                        <button-action type="server" server-action="maintain" target-action="MntnEstIns"/>-->
+                        <button-action type="filter" target="gridCal"/>
+                        <button-action type="reset" target="EstDiaIns"/>
+                        <button-action type="close" target="EstDiaIns"/>
+                    </button>
+                </tag>
+            </tag>
+        </dialog>
+    </tag>
+</screen>

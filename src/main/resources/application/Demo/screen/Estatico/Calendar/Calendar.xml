@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="buttons">
+        <!--
+        <button id="BtnDel" label="Borrar" icon="trash">
+            <button-action type="server" server-action="maintain" target-action="MtnEstDel"/>
+            <button-action type="filter" target="gridEstS"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Simple" />
+            </dependency>
+            <dependency initial="true" target-type="enable" >
+                <dependency-element id="gridEstS" condition="eq" attribute="selectedRows" value="1"/>
+            </dependency>
+        </button>
+        <button id="BtnUpd" label="Modificar" icon="edit">
+            <button-action type="server" server-action="update-model" target-action="QuerGridEstSUpd"/>
+            <button-action type="dialog" target="EstDiaUpd"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Simple" />
+            </dependency>
+            <dependency initial="true" target-type="enable" >
+                <dependency-element id="gridEstS" condition="eq" attribute="selectedRows" value="1"/>
+            </dependency>
+        </button>
+        -->
+        <button id="BtnIns" label="Nuevo" icon="plus-circle">
+            <button-action type="dialog" target="CalDiaIns"/>
+        </button>
+        <button id="BtnPrnt" label="Imprimir" icon="print">
+            <button-action type="dialog" target="PrnOpt"/>
+        </button>
+    </tag>
+    <tag source="center" expandible="vertical">
+        <tag type="div" style="panel-body static">
+            <criteria
+                    component="suggest" id="SuggestCalendar" label="Calendar Code" initial-load="query"
+                    target-action="QuerCalCode" optional="true" style="col-xs-6 col-sm-3 col-lg-2"
+            />
+            <criteria
+                    component="suggest" id="SuggestFreezed" label="Freezed" initial-load="query"
+                    target-action="QuerCalFree" optional="true" style="col-xs-6 col-sm-3 col-lg-2"
+            />
+<!--            <criteria-->
+<!--                    component="select" id="SelectOffset" label="Offset"-->
+<!--                    initial-load="query" target-action="QuerEstEtt" style="col-sm-6 col-md-6 col-lg-3"-->
+<!--            />-->
+            <criteria
+                    component="select" id="SelectPeriodicity" label="Periodicity"
+                    initial-load="query" target-action="QuerCalPeri" style="col-sm-6 col-md-6 col-lg-3"
+            />
+        </tag>
+        <tag type="div" style="panel-footer">
+<!--            <tag type="div" style="pull-right">-->
+            <button id="BtnRset" type="button" label="reiniciar" icon="refresh" >
+                <button-action type="restore" target="selectTypoEntidad" />
+                <button-action type="restore" target="suggestEntidad" />
+            </button>
+            <button id="BtnSubm" type="submit" label="buscar" icon="search" >
+                <button-action type="filter" target="gridEstS" />
+            </button>
+<!--            </tag>-->
+        </tag>
+        <grid
+                id="gridCal" server-action="data" initial-load="query"
+                target-action="QuerGridCal" style="expand"
+        >
+            <column name="colCalId" label="Id"/>
+            <column name="colCalCode" label="Calendar Code"/>
+            <column name="colCalFre" label="Frezeed"/>
+            <!--                <column name="colCalOff" label="Offset"/>-->
+            <column name="colCalPeri" label="Periodicity"/>
+        </grid>
+    </tag>
+    <tag source="modal">
+        <include target-screen="PrnOpt" target-source="center"/>
+        <include target-screen="EstaticoIns" target-source="modal"/>
+    </tag>
+</screen>

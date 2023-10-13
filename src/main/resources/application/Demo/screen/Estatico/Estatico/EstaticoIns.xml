@@ -4,9 +4,13 @@
     Document   : EstaticoIns.xml
     Description: Create Estatico dialog
 -->
-<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
     <tag source="modal">
-        <dialog id="CreateEstaticoDialog" label="Crear Estatico" icon="info-circle">
+        <dialog id="EstDiaIns" label="Crear Estatico" icon="info-circle">
             <tag type="div" style="modal-body scrollable">
                 <criteria placeholder="Entidad" component="text"  id="createEstaticoEntidad" label="Entidad"/>
                 <criteria placeholder="Descripcion" component="text" id="createEstaticoDescripcion" label="Descripcion"/>
@@ -17,13 +21,13 @@
             <tag type="div" style="modal-footer">
                 <tag type="div" style="pull-right">
                     <button label="Annular" icon="close" id="ButCreateEstaticoCancel">
-                        <button-action type="close" target="CreateEstaticoDialog"/>
+                        <button-action type="close" target="EstDiaIns"/>
                     </button>
                     <button label="Acceptar" icon="check" id="ButCreateEstaticoOk" button-type="submit">
                         <button-action type="server" server-action="maintain" target-action="MntnEstIns"/>
                         <button-action type="filter" target="gridEstS"/>
-                        <button-action type="reset" target="CreateEstaticoDialog"/>
-                        <button-action type="close" target="CreateEstaticoDialog"/>
+                        <button-action type="reset" target="EstDiaIns"/>
+                        <button-action type="close" target="EstDiaIns"/>
                     </button>
                 </tag>
             </tag>

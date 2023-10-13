@@ -427,4 +427,27 @@
             </and>
         </join>
     </query>
+    <query id="QuerGridCal">
+        <table id="CALENDAR"/>
+        <field id="ID" alias="colCalId"/>
+        <field id="CODE" alias="colCalCode"/>
+        <field id="FREZEED" alias="colCalFre"/>
+        <field id="TYPE_OF_DAY"/>
+        <field id="PERIODICITY" alias="colCalPeri"/>
+    </query>
+    <query id="QuerCalCode">
+        <table id="CALENDAR"/>
+        <field id="CODE" alias="value"/>
+        <field id="CODE" alias="label"/>
+    </query>
+    <query id="QuerCalFree">
+        <table id="CALENDAR"/>
+        <field id="FREZEED" alias="value"/>
+        <field id="FREZEED" alias="label"/>
+    </query>
+    <query id="QuerCalPeri">
+        <table id="CALENDAR"/>
+        <field id="PERIODICITY" alias="value"/>
+        <field id="PERIODICITY" alias="label"/>
+    </query>
 </queries>

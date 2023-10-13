@@ -11,7 +11,7 @@
         template="window"
 >
     <tag source="modal">
-        <dialog id="updateEstaticoDia" label="Modificar Estatico" icon="info-circle">
+        <dialog id="EstDiaUpd" label="Modificar Estatico" icon="info-circle">
             <tag type="div" style="modal-body scrollable">
                 <criteria placeholder="Entidad" component="text"  id="crtUpdEntidad" label="Entidad"/>
                 <criteria placeholder="Descripcion" component="text" id="crtUpdDescripcion" label="Descripcion"/>
@@ -22,13 +22,13 @@
             <tag type="div" style="modal-footer">
                 <tag type="div" style="pull-right">
                     <button label="Annular" icon="close" id="ButUpdateEstaticoCancel">
-                        <button-action type="close" target="updateEstaticoDia"/>
+                        <button-action type="close" target="EstDiaUpd"/>
                     </button>
                     <button label="Acceptar" icon="check" id="ButUpdateEstaticoOk" button-type="submit">
                         <button-action type="server" server-action="maintain" target-action="MtnEstUpd"/>
                         <button-action type="filter" target="gridEstS"/>
-                        <button-action type="reset" target="updateEstaticoDia"/>
-                        <button-action type="close" target="updateEstaticoDia"/>
+                        <button-action type="reset" target="EstDiaUpd"/>
+                        <button-action type="close" target="EstDiaUpd"/>
                     </button>
                 </tag>
             </tag>
