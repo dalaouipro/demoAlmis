@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : test.xml
+    Description: Test screen
+-->
+
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="center">
+        <chart id="MyChart" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" >
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+    </tag>
+</screen>

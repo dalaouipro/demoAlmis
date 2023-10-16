@@ -64,7 +64,7 @@
         <option label="Simple Grid" value="Simple"/>
         <option label="Editable Grid" value="Editable"/>
         <option label="Date Grid" value="DateG"/>
-</group>
+    </group>
     <group id="EnumTypEtt">
         <option label="EAFI" value="EAFI"/>
         <option label="ECR" value="ECR"/>
@@ -73,5 +73,10 @@
         <option label="SAVGRP" value="SAVGRP"/>
         <option label="SGECR" value="SGECR"/>
         <option label="SGIIC" value="SGIIC"/>
+    </group>
+    <group id="EnumWiz">
+        <option label="Enter a word between 1 and 4 characters" value="Step1"/>
+        <option label="Choose at least 2 users" value="Step2"/>
+        <option label="Enter the same password twice" value="Step3"/>
     </group>
 </enumerated>

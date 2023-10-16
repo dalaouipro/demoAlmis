@@ -450,4 +450,9 @@
         <field id="PERIODICITY" alias="value"/>
         <field id="PERIODICITY" alias="label"/>
     </query>
+    <query id="QuerChart" distinct="true">
+        <table id="oretest" alias="o"/>
+        <field id="name" table="o" alias="typ"/>
+        <field id="cnt" table="o" alias="cnt"/>
+    </query>
 </queries>
