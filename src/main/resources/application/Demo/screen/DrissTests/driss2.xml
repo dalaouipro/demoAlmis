@@ -5,6 +5,35 @@
     Author     : Driss ALAOUI
     Description: Private profile options
 -->
-<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window">
-
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window"
+>
+    <tag source="center" expandible="vertical">
+        <window id="WinDriss21">
+            <tag id="WinDriss21Tag" type="div" style="panel-body static">
+                <criteria component="text" id="GrdSvcCrtName" label="GrdSvcCrtName" validation="{required:true}"/>
+                <criteria
+                        component="select" id="GrdSvcCrtAlive" label="GrdSvcCrtAlive" validation="{required:true}"
+                        initial-load="enum" target-action="enumOfficial" optional="true"
+                />
+                <criteria component="date" id="GrdSvcCrtBirthDate" label="GrdSvcCrtBirthDate" validation="{required:true}"/>
+                <tag type="div" style="panel-footer">
+                    <button id="BtnService" label="test service">
+                        <button-action type="validate" target="WinDriss21Tag"/>
+                        <button-action type="server" server-action="data" target-action="QuerSvcTest"/>
+                        <button-action type="filter" target="GrdSvc"/>
+                    </button>
+                </tag>
+            </tag>
+        </window>
+        <window id="WinDriss22" expandible="vertical" style="expand">
+            <grid id="GrdSvc" style="expand" editable="true" initial-load="query" target-action="QuerTestPers">
+                <column name="GrdSvcColId" label="Id"/>
+                <column name="GrdSvcColName" label="Name"/>
+                <column name="GrdSvcColAlive" label="Alive"/>
+                <column name="GrdSvcColBirthDate" label="Birth Date"/>
+            </grid>
+        </window>
+    </tag>
 </screen>

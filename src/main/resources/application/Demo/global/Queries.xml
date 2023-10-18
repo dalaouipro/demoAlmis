@@ -455,4 +455,57 @@
         <field id="name" table="o" alias="typ"/>
         <field id="cnt" table="o" alias="cnt"/>
     </query>
+    <query id="QuerTestPers">
+        <table id="PersonTest" alias="p"/>
+        <field id="Id" alias="GrdSvcColId"/>
+        <field id="Name" alias="GrdSvcColName"/>
+        <field id="Alive" alias="GrdSvcColAlive"/>
+        <field id="BirthDate" alias="GrdSvcColBirthDate" transform="DATE"/>
+    </query>
+    <query id="QuerSvcTest" service="SvcTest">
+        <variable id="Name" type="STRING" name="GrdSvcCrtName"/>
+        <variable id="Alive" type="BOOLEAN" name="GrdSvcCrtAlive"/>
+        <variable id="Birthdate" type="DATE" name="GrdSvcCrtBirthDate"/>
+    </query>
+    <query id="QuerDepTestMain">
+        <table id="families" alias="f"/>
+        <field id="id" alias="colDepMainId" table="f"/>
+        <field id="family" alias="colDepMainFam" table="f"/>
+        <field id="name" alias="colDepMainName1" table="f1"/>
+        <field id="name" alias="colDepMainName2" table="f2"/>
+        <field id="name" alias="colDepMainName3" table="f3"/>
+        <join type="RIGHT">
+            <table id="fam1" alias="f1"/>
+            <and>
+                <filter left-table="f" left-field="id" condition="eq" right-table="f1" right-field="id"/>
+            </and>
+        </join>
+        <join type="RIGHT">
+            <table id="fam2" alias="f2"/>
+            <and>
+                <filter left-table="f" left-field="id" condition="eq" right-table="f2" right-field="id"/>
+            </and>
+        </join>
+        <join type="RIGHT">
+            <table id="fam3" alias="f3"/>
+            <and>
+                <filter left-table="f" left-field="id" condition="eq" right-table="f3" right-field="id"/>
+            </and>
+        </join>
+    </query>
+    <query id="QuerDepTestAux1">
+        <table id="fam1"/>
+        <field id="id" alias="colDepAux1Id"/>
+        <field id="name" alias="colDepAux1Name"/>
+    </query>
+    <query id="QuerDepTestAux2">
+        <table id="fam2"/>
+        <field id="id" alias="colDepAux2Id"/>
+        <field id="name" alias="colDepAux2Name"/>
+    </query>
+    <query id="QuerDepTestAux3">
+        <table id="fam3"/>
+        <field id="id" alias="colDepAux3Id"/>
+        <field id="name" alias="colDepAux3Name"/>
+    </query>
 </queries>

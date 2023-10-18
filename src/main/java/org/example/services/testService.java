@@ -2,6 +2,7 @@ package org.example.services;
 
 import com.almis.awe.config.ServiceConfig;
 import com.almis.awe.exception.AWException;
+import com.almis.awe.model.dto.CellData;
 import com.almis.awe.model.dto.DataList;
 import com.almis.awe.model.dto.ServiceData;
 import com.almis.awe.model.util.data.DataListUtil;
@@ -9,8 +10,11 @@ import com.almis.awe.service.MaintainService;
 import com.almis.awe.service.QueryService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.example.dto.PersonDto;
 import org.example.models.Customer;
+import org.example.models.Person;
 import org.example.models.Valuation;
+import org.example.repositories.PersonRepo;
 import org.example.repositories.ValuationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +22,11 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import org.modelmapper.*;
 
 @Service
 public class testService extends ServiceConfig {
@@ -31,6 +39,8 @@ public class testService extends ServiceConfig {
     ValuationService valuationService;
     @Autowired
     ValuationRepo valuationRepo;
+    @Autowired
+    PersonRepo personRepo;
 
 
     public ServiceData print() throws FileNotFoundException, JRException, AWException, ParseException {
@@ -122,6 +132,19 @@ public class testService extends ServiceConfig {
             valuations.add(new Valuation(id,quantity,price,mult,priceDate,asset_id));
         }
         return valuations;
+    }
+
+    public void getPersonTest(PersonDto personDto) throws AWException, ParseException {
+        Person MyPers = new ModelMapper().map(personDto, Person.class);
+        personRepo.save(MyPers);
+        System.out.println(MyPers);
+        for (Map<String, CellData> element : queryService.launchQuery("QuerTestPers").getDataList().getRows()) {
+            MyPers.setId(Integer.parseInt(element.get("GrdSvcColId").getStringValue()));
+            MyPers.setName(element.get("GrdSvcColName").getStringValue());
+            MyPers.setAlive(Boolean.parseBoolean(element.get("GrdSvcColAlive").getStringValue()));
+            MyPers.setBirthdate(LocalDate.parse(element.get("GrdSvcColBirthDate").getStringValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            System.out.println(MyPers);
+        }
     }
 
 }

@@ -115,12 +115,12 @@
                     <column name="colEstDNif" component="text" label="Nif"/>
                     <column name="colEstDdate" component="date" label="Dato"/>
                     <button id="BtnGridEstDIns" label="BUTTON_NEW" icon="plus-circle">
-                        <button-action type="add-row" target="gridDstE" silent="true"/>
+                        <button-action type="add-row" target="gridEstE" silent="true"/>
                     </button>
                     <button id="BtnGridEstDDel" label="BUTTON_DELETE" icon="trash">
-                        <button-action type="delete-row" target="gridDstE" silent="true"/>
+                        <button-action type="delete-row" target="gridEstE" silent="true"/>
                         <dependency target-type="enable" initial="true">
-                            <dependency-element id="gridDstE" attribute="selectedRows" condition="ge" value="1" />
+                            <dependency-element id="gridEstE" attribute="selectedRows" condition="ge" value="1" />
                         </dependency>
                     </button>
                 </grid>

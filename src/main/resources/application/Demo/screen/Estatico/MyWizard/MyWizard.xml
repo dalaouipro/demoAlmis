@@ -20,7 +20,7 @@
             <wizard-panel id="Step1">
                 <tag type="div" style="fullHeight" expandible="vertical">
                     <tag type="div" style="panel-body expand">
-                        <criteria id="WzrCrt1" component="text" validation="{required:true, minlength:1 maxlength:4}" label="Type a short word"/>
+                        <criteria id="WzrCrt1" component="text" validation="{required:true, minlength:1, maxlength:4}" label="Type a short word"/>
                     </tag>
                     <tag type="div" style="panel-footer">
                         <tag type="div" style="pull-right">

@@ -19,7 +19,11 @@
     <service id="ValuationService">
         <java classname="org.example.services.ValuationService" method="getValuation"/>
     </service>
-
+    <service id="SvcTest">
+        <java classname="org.example.services.testService" method="getPersonTest">
+            <service-parameter type="OBJECT" bean-class="org.example.dto.PersonDto"/>
+        </java>
+    </service>
 
 
 </services>
