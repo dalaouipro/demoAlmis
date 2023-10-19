@@ -467,6 +467,9 @@
         <variable id="Alive" type="BOOLEAN" name="GrdSvcCrtAlive"/>
         <variable id="Birthdate" type="DATE" name="GrdSvcCrtBirthDate"/>
     </query>
+    <query id="QuerSvcTest2" service="SvcTest2">
+
+    </query>
     <query id="QuerDepTestMain">
         <table id="families" alias="f"/>
         <field id="id" alias="colDepMainId" table="f"/>

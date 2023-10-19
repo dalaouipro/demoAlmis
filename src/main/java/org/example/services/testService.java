@@ -5,6 +5,7 @@ import com.almis.awe.exception.AWException;
 import com.almis.awe.model.dto.CellData;
 import com.almis.awe.model.dto.DataList;
 import com.almis.awe.model.dto.ServiceData;
+import com.almis.awe.model.entities.actions.ClientAction;
 import com.almis.awe.model.util.data.DataListUtil;
 import com.almis.awe.service.MaintainService;
 import com.almis.awe.service.QueryService;
@@ -146,5 +147,18 @@ public class testService extends ServiceConfig {
             System.out.println(MyPers);
         }
     }
+
+
+    public ServiceData GrdSvcIns() throws AWException, ParseException {
+        ServiceData serviceData = new ServiceData();
+        ClientAction fillGrdAction = new ClientAction("fill");
+        fillGrdAction.setTarget("GrdSvc");
+        DataList dataList = queryService.launchQuery("QuerTestPers").getDataList();
+        fillGrdAction.addParameter("datalist", dataList);
+        serviceData.addClientAction(fillGrdAction);
+        return serviceData;
+    }
+
+
 
 }

@@ -24,6 +24,9 @@
             <service-parameter type="OBJECT" bean-class="org.example.dto.PersonDto"/>
         </java>
     </service>
+    <service id="SvcTest2">
+        <java classname="org.example.services.testService" method="GrdSvcIns"/>
+    </service>
 
 
 </services>

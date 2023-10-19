@@ -7,48 +7,49 @@
 -->
 <screen
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
 >
     <tag source="center" expandible="vertical">
         <grid id="grdDepMain" initial-load="query" target-action="QuerDepTestMain" style="expand">
             <column name="colDepMainId" label="Id"/>
             <column name="colDepMainFam" label="Family"/>
-            <column name="colDepMainName1" label="Name">
+            <column name="colDepMainName1" label="Name family 1">
                 <dependency target-type="show" initial="true">
-                    <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="1"/>
+                    <dependency-element id="grdDepMain" column="colDepMainId" attribute="selectedRow" condition="in" value="1"/>
                 </dependency>
             </column>
-            <column name="colDepMainName2" label="Name">
+            <column name="colDepMainName2" label="Name family 2">
                 <dependency target-type="show" initial="true">
-                    <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="2"/>
+                    <dependency-element id="grdDepMain" column="colDepMainId" attribute="selectedRow" condition="in" value="2"/>
                 </dependency>
             </column>
-            <column name="colDepMainName3" label="Name">
+            <column name="colDepMainName3" label="Name family 3">
                 <dependency target-type="show" initial="true">
-                    <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="3"/>
+                    <dependency-element id="grdDepMain" column="colDepMainId" attribute="selectedRow" condition="in" value="3"/>
                 </dependency>
             </column>
         </grid>
-<!--        <grid id="grdDepAux1" initial-load="query" target-action="QuerDepTestAux1" style="expand">-->
-<!--            <column name="colDepAux1Id" label="Id"/>-->
-<!--            <column name="colDepAux1Name" label="Name"/>-->
+        <grid id="grdDepAux1" initial-load="query" target-action="QuerDepTestAux1" style="expand">
+            <column name="colDepAux1Id" label="Id"/>
+            <column name="colDepAux1Name" label="Name family 1"/>
 <!--            <dependency target-type="show" initial="true">-->
 <!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="1"/>-->
 <!--            </dependency>-->
-<!--        </grid>-->
-<!--        <grid id="grdDepAux2" initial-load="query" target-action="QuerDepTestAux2" style="expand">-->
+        </grid>
+        <grid id="grdDepAux2" initial-load="query" target-action="QuerDepTestAux2" style="expand">
 <!--            <dependency target-type="show" initial="true">-->
 <!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="2"/>-->
 <!--            </dependency>-->
-<!--            <column name="colDepAux2Id" label="Id"/>-->
-<!--            <column name="colDepAux2Name" label="Name"/>-->
-<!--        </grid>-->
-<!--        <grid id="grdDepAux3" initial-load="query" target-action="QuerDepTestAux3" style="expand">-->
+            <column name="colDepAux2Id" label="Id"/>
+            <column name="colDepAux2Name" label="Name family 2"/>
+        </grid>
+        <grid id="grdDepAux3" initial-load="query" target-action="QuerDepTestAux3" style="expand">
 <!--            <dependency target-type="show" initial="true">-->
 <!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="3"/>-->
 <!--            </dependency>-->
-<!--            <column name="colDepAux3Id" label="Id"/>-->
-<!--            <column name="colDepAux3Name" label="Name"/>-->
-<!--        </grid>-->
+            <column name="colDepAux3Id" label="Id"/>
+            <column name="colDepAux3Name" label="Name family 3"/>
+        </grid>
     </tag>
 </screen>

@@ -7,7 +7,8 @@
 -->
 <screen
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd" template="window"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
 >
     <tag source="center" expandible="vertical">
         <window id="WinDriss21">
@@ -28,7 +29,7 @@
             </tag>
         </window>
         <window id="WinDriss22" expandible="vertical" style="expand">
-            <grid id="GrdSvc" style="expand" editable="true" initial-load="query" target-action="QuerTestPers">
+            <grid id="GrdSvc" style="expand" initial-load="query" target-action="QuerSvcTest2" autoload="true">
                 <column name="GrdSvcColId" label="Id"/>
                 <column name="GrdSvcColName" label="Name"/>
                 <column name="GrdSvcColAlive" label="Alive"/>
