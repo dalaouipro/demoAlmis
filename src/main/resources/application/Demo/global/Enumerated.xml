@@ -79,4 +79,12 @@
         <option label="Choose at least 2 users" value="Step2"/>
         <option label="Enter the same password twice" value="Step3"/>
     </group>
+    <group id="enumIstr">
+        <option label="Securities" value="Securities"/>
+        <option label="Pricing" value="Pricing"/>
+        <option label="Clients" value="Clients"/>
+        <option label="Portfolio" value="Portfolio"/>
+        <option label="Position" value="Position"/>
+<!--        <option label="Valorization" value="Valorization"/>-->
+    </group>
 </enumerated>

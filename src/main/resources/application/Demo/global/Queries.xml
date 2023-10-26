@@ -467,9 +467,7 @@
         <variable id="Alive" type="BOOLEAN" name="GrdSvcCrtAlive"/>
         <variable id="Birthdate" type="DATE" name="GrdSvcCrtBirthDate"/>
     </query>
-    <query id="QuerSvcTest2" service="SvcTest2">
-
-    </query>
+    <query id="QuerSvcTest2" service="SvcTest2"/>
     <query id="QuerDepTestMain">
         <table id="families" alias="f"/>
         <field id="id" alias="colDepMainId" table="f"/>
@@ -496,6 +494,37 @@
             </and>
         </join>
     </query>
+    <query id="QuerDepTestMain21">
+        <table id="choosefamily" alias="c"/>
+        <field id="id" alias="colDepMainId2" table="c"/>
+        <field id="name" alias="colDepMainFam2" table="c"/>
+        <field id="name" alias="colDepMainFam231" table="f1"/>
+        <field id="name" alias="colDepMainFam232" table="f2"/>
+        <field id="name" alias="colDepMainFam233" table="f3"/>
+        <join type="RIGHT">
+            <table id="fam1" alias="f1"/>
+            <and>
+                <filter left-table="c" left-field="id" condition="eq" right-table="f1" right-field="id"/>
+            </and>
+        </join>
+        <join type="RIGHT">
+            <table id="fam2" alias="f2"/>
+            <and>
+                <filter left-table="c" left-field="id" condition="eq" right-table="f2" right-field="id"/>
+            </and>
+        </join>
+        <join type="RIGHT">
+            <table id="fam3" alias="f3"/>
+            <and>
+                <filter left-table="c" left-field="id" condition="eq" right-table="f3" right-field="id"/>
+            </and>
+        </join>
+    </query>
+    <query id="QuerDepTestMain22">
+        <table id="families"/>
+        <field id="id" alias="value"/>
+        <field id="family" alias="label"/>
+    </query>
     <query id="QuerDepTestAux1">
         <table id="fam1"/>
         <field id="id" alias="colDepAux1Id"/>
@@ -511,4 +540,89 @@
         <field id="id" alias="colDepAux3Id"/>
         <field id="name" alias="colDepAux3Name"/>
     </query>
+    <query id="QuerDepTestAux4">
+        <table id="fam4"/>
+        <field id="id" alias="colDepAux4Id"/>
+        <field id="name" alias="colDepAux4Name"/>
+    </query>
+    <query id="querIstrSec">
+        <table id="security"/>
+        <field id="name" alias="colIstrSecNam"/>
+        <field id="type" alias="colIstrSecTyp"/>
+        <field id="emitter" alias="colIstrSecEmt"/>
+        <field id="rating" alias="colIstrSecRtg"/>
+        <field id="risk" alias="colIstrSecRsk"/>
+    </query>
+    <query id="querIstrPrc">
+        <table id="pricing"/>
+        <field id="security" alias="colIstrPrcSec"/>
+        <field id="date" alias="colIstrPrcDate" transform="DATE"/>
+        <field id="pricing" alias="colIstrPrcPrc"/>
+    </query>
+    <query id="querIstrCli">
+        <table id="client"/>
+        <field id="name" alias="colIstrCliNam"/>
+    </query>
+    <query id="querIstrPfl">
+        <table id="portfolio2"/>
+        <field id="code" alias="colIstrPflCod"/>
+        <field id="client" alias="colIstrPflCli"/>
+    </query>
+    <query id="querIstrPos">
+        <table id="position2" alias="p2"/>
+        <field id="portfolio" alias="colIstrPosPfl" table="p2"/>
+        <field id="security" alias="colIstrPosSec" table="p2"/>
+        <field id="quantity" alias="colIstrPosQty" table="p2"/>
+    </query>
+    <query id="querIstrVal">
+        <table id="position2" alias="p2"/>
+        <field id="portfolio" alias="colIstrValPfl" table="p2"/>
+        <field id="security" alias="colIstrValSec" table="p2"/>
+        <field id="quantity" alias="colIstrValQty" table="p2"/>
+    </query>
+    <query id="querIstrFiltDat">
+        <table id="pricing"/>
+        <field id="date" alias="value" transform="DATE"/>
+        <field id="date" alias="label" transform="DATE"/>
+        <where>
+            <and>
+                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec"/>
+            </and>
+        </where>
+        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
+    </query>
+    <query id="querIstrFiltPrc1">
+        <table id="pricing"/>
+        <field id="pricing" alias="value"/>
+        <field id="pricing" alias="label"/>
+        <where>
+            <and>
+                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec"/>
+                <filter left-table="pricing" left-field="date" condition="eq" right-variable="varFiltDat"/>
+            </and>
+        </where>
+        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
+        <variable id="varFiltDat" type="DATE" name="colIstrValDat"/>
+    </query>
+    <query id="querIstrFiltPrc2">
+        <table id="pricing"/>
+        <field id="pricing" alias="crtPrcTest2"/>
+        <where>
+            <and>
+                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec" optional="true"/>
+                <filter left-table="pricing" left-field="date" condition="eq" right-variable="varFiltDat" optional="true"/>
+            </and>
+        </where>
+        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
+        <variable id="varFiltDat" type="DATE" name="colIstrValDat"/>
+    </query>
+
+<!--    <query id="querIstrFiltVal">-->
+<!--        <table id="position2"/>-->
+<!--        <field id="resultat"/>-->
+<!--        <operation operator="MULT" alias="resultat">-->
+<!--            <-->
+<!--        </operation>-->
+<!--    </query>-->
+
 </queries>

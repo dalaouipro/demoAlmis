@@ -12,7 +12,7 @@
                     <tag type="div" style="expand" expandible="vertical">
                         <tag type="div" style="panel-body expand scrollable">
                             <tag type="div" label="General data" style="xlg"/>
-                            <criteria placeholder="Registration date" component="date"  id="CrtRegisterDate"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Registration date" component="date"  id="crtValTestegisterDate"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Select one" component="select"  id="CrtStatus" initial-load="enum" target-action="enumStatus" label="Status" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Date KYC" component="date"  id="CrtDateKYC"  label="Date KYC" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Select one" component="select"  id="CrtClassification" initial-load="query" target-action="getCustomerType" label="Classification" style="col-md-4 col-sm-4 col-xs-7" />
@@ -51,11 +51,11 @@
                 <wizard-panel id="WizardStep2">
                     <tag type="div" style="expand" expandible="vertical">
                         <tag type="div" style="panel-body expand">
-                            <criteria placeholder="Registration date" component="date"  id="CrtRegisterDateCtt"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
+                            <criteria placeholder="Registration date" component="date"  id="crtValTestegisterDateCtt"  label="Registration Date" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Account number" component="text"  id="CrtAccountNumber" label="Account Number" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Contract code" component="text"   id="CrtContractCode"  label="Contract code" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Advising clause" component="text"  id="CrtAdvisingClause" label="Advising clause" style="col-md-4 col-sm-4 col-xs-7" />
-                            <criteria placeholder="Select value" component="select"  id="CrtRate" label="Rate" style="col-md-4 col-sm-4 col-xs-7"/>
+                            <criteria placeholder="Select value" component="select"  id="crtValTestate" label="Rate" style="col-md-4 col-sm-4 col-xs-7"/>
                             <criteria component="checkbox" id="CrtCheckbox1" label="rule 1"/>
                             <criteria component="checkbox" id="CrtCheckbox2" label="rule 2"/>
                             <criteria component="checkbox" id="CrtCheckbox3" label="rule 3"/>
@@ -82,7 +82,7 @@
                             <criteria placeholder="Select one" component="suggest" id="CrtServiceType" label="Service Type" initial-load="query" target-action="getServiceType" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Select one" component="select"  id="CrtCurrency"  label="Currency" style="col-md-4 col-sm-4 col-xs-7" />
                             <criteria placeholder="Select one" component="select"  id="CrtOfficial" initial-load="enum" target-action="enumOfficial" label="Official" style="col-md-4 col-sm-4 col-xs-7"/>
-                            <criteria placeholder="Select one" component="select"  id="CrtRiskCalcul" initial-load="enum" target-action="enumRiskCalculation" label="Risk Calculation" style="col-md-4 col-sm-4 col-xs-7"/>
+                            <criteria placeholder="Select one" component="select"  id="crtValTestiskCalcul" initial-load="enum" target-action="enumRiskCalculation" label="Risk Calculation" style="col-md-4 col-sm-4 col-xs-7"/>
                         </tag>
                         <tag type="div" style="panel-footer">
                             <tag type="div" style="pull-right">

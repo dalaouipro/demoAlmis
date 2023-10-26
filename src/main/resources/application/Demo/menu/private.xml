@@ -77,11 +77,12 @@
     <option name="driss1" label="driss1" screen="driss1"/>
     <option name="driss2" label="driss2" screen="driss2"/>
     <option name="driss3" label="driss3" screen="driss3"/>
+    <option name="driss4" label="driss4" screen="driss4"/>
+    <option name="driss5" label="driss5" screen="driss5"/>
   </option>
   <option name="Estatico0" label="Estatico">
     <option name="Estatico" label="Estatico" screen="Estatico"/>
     <option name="Calendar" label="Calendar" screen="Calendar"/>
-    <option name="MyWizard" label="Wizard" screen="MyWizard"/>
-    <option name="MyCharts" label="Charts" screen="MyCharts"/>
+    <option name="instruments" label="Instruments" screen="instruments"/>
   </option>
 </menu>

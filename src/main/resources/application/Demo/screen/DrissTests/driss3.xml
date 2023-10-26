@@ -30,26 +30,72 @@
                 </dependency>
             </column>
         </grid>
+
+        <grid id="grdDepMain2" style="expand" initial-load="query" target-action="QuerDepTestMain21" editable="true">
+            <column name="colDepMainId2" label="Id"/>
+<!--            <column name="colDepMainFam2" label="Family"/>-->
+            <column name="colDepMainFam2" label="Family" component="select" initial-load="query" target-action="QuerDepTestMain22"/>
+            <!--
+            <column name="colDepMainFam231" label="name family 1" component="select">
+                <dependency target-type="input" source-type="launcher" target-action="" initial="true">
+                    <dependency-element id="colDepMainFam2" attribute="selectedRow" condition="eq" value="1"/>
+                </dependency>
+            </column>
+            -->
+            <!--
+            <column name="colDepMainFam232" label="name family 2">
+                <dependency target-type="show-column" initial="true">
+                    <dependency-element id="colDepMainFam2" attribute="value" condition="eq" value="2"/>
+                </dependency>
+            </column>
+            <column name="colDepMainFam233" label="name family 3">
+                <dependency target-type="show-column" initial="true">
+                    <dependency-element id="colDepMainFam2" attribute="value"  condition="eq" value="3"/>
+                </dependency>
+            </column>
+            -->
+        </grid>
+
+        <criteria component="text" id="myResult" readonly="true" variable="colDepMainFam2">
+            <dependency target-type="input" source-type="launcher" target-action="mycol" initial="true">
+<!--                <dependency-element alias="mycol" id="colDepMainFam2.selected" condition="eq" value="1"/>-->
+<!--                <dependency-element alias="mycol" id="grdDepMain2" attribute="selectedRow" condition="eq" value="1"/>-->
+                <dependency-element alias="mycol" id="grdDepMain2" column="colDepMainFam2" attribute="selectedRow"/>
+            </dependency>
+        </criteria>
+        <!--
+        <criteria component="select" id="myResult2">
+            <dependency>
+                <dependency-element id="colDepMainFam3"
+            </dependency>
+        </criteria>
+-->
+        <!--
         <grid id="grdDepAux1" initial-load="query" target-action="QuerDepTestAux1" style="expand">
             <column name="colDepAux1Id" label="Id"/>
             <column name="colDepAux1Name" label="Name family 1"/>
-<!--            <dependency target-type="show" initial="true">-->
-<!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="1"/>-->
-<!--            </dependency>-->
+&lt;!&ndash;            <dependency target-type="show" initial="true">&ndash;&gt;
+&lt;!&ndash;                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="1"/>&ndash;&gt;
+&lt;!&ndash;            </dependency>&ndash;&gt;
         </grid>
         <grid id="grdDepAux2" initial-load="query" target-action="QuerDepTestAux2" style="expand">
-<!--            <dependency target-type="show" initial="true">-->
-<!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="2"/>-->
-<!--            </dependency>-->
+&lt;!&ndash;            <dependency target-type="show" initial="true">&ndash;&gt;
+&lt;!&ndash;                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="2"/>&ndash;&gt;
+&lt;!&ndash;            </dependency>&ndash;&gt;
             <column name="colDepAux2Id" label="Id"/>
             <column name="colDepAux2Name" label="Name family 2"/>
         </grid>
         <grid id="grdDepAux3" initial-load="query" target-action="QuerDepTestAux3" style="expand">
-<!--            <dependency target-type="show" initial="true">-->
-<!--                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="3"/>-->
-<!--            </dependency>-->
+&lt;!&ndash;            <dependency target-type="show" initial="true">&ndash;&gt;
+&lt;!&ndash;                <dependency-element id="grdDepMain" column="colDepMainFam" attribute="selectedRow" condition="eq" value="3"/>&ndash;&gt;
+&lt;!&ndash;            </dependency>&ndash;&gt;
             <column name="colDepAux3Id" label="Id"/>
             <column name="colDepAux3Name" label="Name family 3"/>
         </grid>
+        <grid id="grdDepAux4" initial-load="query" target-action="QuerDepTestAux4" style="expand">
+            <column name="colDepAux4Id" label="Id"/>
+            <column name="colDepAux4Name" label="Name family 3"/>
+        </grid>
+        -->
     </tag>
 </screen>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : instruments.xml
+    Author     : Driss ALAOUI
+-->
+<screen
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+        template="window"
+>
+    <tag source="center">
+        <tab id="tabIstr" initial-load="enum" target-action="enumIstr">
+            <tabcontainer id="Securities">
+                <grid id="grdSec" initial-load="query" target-action="querIstrSec" style="expand">
+                    <column name="colIstrSecNam" label="Name"/>
+                    <column name="colIstrSecTyp" label="Type"/>
+                    <column name="colIstrSecEmt" label="Emitter"/>
+                    <column name="colIstrSecRtg" label="Rating"/>
+                    <column name="colIstrSecRsk" label="Risk"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Pricing">
+                <grid id="grdPrc" initial-load="query" target-action="querIstrPrc" style="expand">
+                    <column name="colIstrPrcSec" label="Security"/>
+                    <column name="colIstrPrcDate" label="Date"/>
+                    <column name="colIstrPrcPrc" label="Pricing"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Clients">
+                <grid id="grdCli" initial-load="query" target-action="querIstrCli" style="expand">
+                    <column name="colIstrCliNam" label="Name"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Portfolio">
+                <grid id="grdPorFol" initial-load="query" target-action="querIstrPfl" style="expand">
+                    <column name="colIstrPflCod" label="Code"/>
+                    <column name="colIstrPflCli" label="Client"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Position">
+                <grid id="grdPos" initial-load="query" target-action="querIstrPos" style="expand">
+                    <column name="colIstrPosPfl" label="PortFolio"/>
+                    <column name="colIstrPosSec" label="Security"/>
+                    <column name="colIstrPosQty" label="Quantity"/>
+                </grid>
+            </tabcontainer>
+            <tabcontainer id="Valorization" expandible="vertical">
+                <window id="winIstrValCrt" label="Search criteria" expandible="vertical" style="expand">
+                    <criteria component="filtered-calendar" id="winIstrValCrtDat" label="Date"/>
+                </window>
+                <window id="winIstrValGrd" label="Valuation" expandible="vertical" style="expand">
+                    <grid id="grdVal" initial-load="query" target-action="querIstrVal" style="expand">
+                        <column name="colIstrValPfl" label="Portfolio" component="text" />
+                        <column name="colIstrValSec" label="Security" component="text" />
+
+                        <column name="colIstrValDat" component="filtered-calendar" label="Date" sortable="false">
+                            <dependency target-type="input" initial="true" source-type="query" server-action="data" target-action="querIstrFiltDat">
+                                <!--
+                                <dependency-element id="grdVal" column="colIstrValSec" attribute="selectedRowValue"/>
+                                <dependency-element id="grdVal" event="select-row"/>
+                                -->
+                                <!--<dependency-element id="grdVal" event="select-row"/>-->
+                                <dependency-element id="grdVal" column="colIstrValSec" attribute="selectedRowValue"/>
+                            </dependency>
+                        </column>
+
+                        <!--
+                        <column name="colIstrValPrc" label="Pricing" component="text">
+                            <dependency target-type="input" initial="true" source-type="launcher" target-action="crtPrcTest">
+                                <dependency-element id="crtPrcTest"/>
+    &lt;!&ndash;                            <dependency-element id="grdVal" attribute="currentRowValue"/>&ndash;&gt;
+                            </dependency>
+                        </column>
+                        -->
+                        <column name="colIstrValPrc" label="Pricing" component="select">
+                            <dependency target-type="input" initial="true" source-type="query" server-action="data" target-action="querIstrFiltPrc1">
+                                <dependency-element id="grdVal" column="colIstrValDat" attribute="selectedRowValue"/>
+                            </dependency>
+                        </column>
+
+                        <column name="colIstrValQty" label="Quantity" component="text"/>
+                        <column name="colIstrValVal" label="Value" component="text">
+                            <dependency target-type="input" initial="true" source-type="formule" formule="[a] * [b]">
+                                <!--                            <dependency-element id="grdVal" event="select-row"/>-->
+                                <dependency-element id="grdVal" column="colIstrValPrc" attribute="selectedRowValue" alias="a"/>
+                                <dependency-element id="grdVal" column="colIstrValQty" attribute="selectedRowValue" alias="b"/>
+                            </dependency>
+                        </column>
+                    </grid>
+                </window>
+            </tabcontainer>
+        </tab>
+    </tag>
+</screen>

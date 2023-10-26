@@ -98,7 +98,7 @@
             <field id="CUSTOMER_TYPE_ID" variable="CTvariable"/>
             <field id="CUSTOMER_CAT" variable="CCvariable"/>
             <field id="NATURE" variable="Nvariable"/>
-            <variable id="Rvariable" type="DATE" name="CrtRegisterDate"/>
+            <variable id="Rvariable" type="DATE" name="crtValTestegisterDate"/>
             <variable id="Svariable" type="BOOLEAN" name="CrtStatus"/>
             <variable id="Dvariable" type="DATE" name="CrtDateKYC"/>
             <variable id="CTvariable" type="INTEGER" name="CrtClassification"/>
@@ -114,9 +114,9 @@
             <field id="RATE" variable="Ratevariable"/>
             <variable id="CCvariable" type="DATE" name="CrtContractCode"/>
             <variable id="ANvariable" type="INTEGER" name="CrtAccountNumber"/>
-            <variable id="RDvariable" type="DATE" name="CrtRegisterDateCtt"/>
+            <variable id="RDvariable" type="DATE" name="crtValTestegisterDateCtt"/>
             <variable id="ACvariable" type="STRING" name="CrtAdvisingClause"/>
-            <variable id="Ratevariable" type="STRING" name="CrtRate"/>
+            <variable id="Ratevariable" type="STRING" name="crtValTestate"/>
         </insert>
         <insert>
             <table id="PORTFOLIO"/>
@@ -124,7 +124,7 @@
             <field id="CURRENCY" variable="currencyVariable"/>
             <field id="SERVICE_TYPE" variable="STVariable"/>
             <field id="CODE" variable="CodeVariable"/>
-            <variable id="RCVariable" type="BOOLEAN" name="CrtRiskCalcul"/>
+            <variable id="RCVariable" type="BOOLEAN" name="crtValTestiskCalcul"/>
             <variable id="currencyVariable" type="STRING" name="CrtCurrency"/>
             <variable id="STVariable" type="INTEGER" name="CrtServiceType"/>
             <variable id="CodeVariable" type="INTEGER" name="CrtCode"/>
@@ -186,7 +186,7 @@
                     <filter left-field="IDEORECFGETT" condition="eq" right-variable="varUpdate2"/>
                 </and>
             </where>
-            <variable id="varUpdate2" type="INTEGER" name="colEstSId.selected"/>
+            <variable id="varUpdate2" type="INTEGER" name="colEstSId"/>
             <variable id="varETT" type="STRING" name="crtUpdEntidad" />
             <variable id="varTYPETT" type="STRING" name="crtUpdTipoEntidad" />
             <variable id="varDESETT" type="STRING" name="crtUpdDescripcion" />
@@ -197,7 +197,6 @@
     <target name="MtnEstDel">
         <delete>
             <table id="ORECFGETT"/>
-            <field id="IDEORECFGETT"/>
             <where>
                 <filter left-table="ORECFGETT" left-field="IDEORECFGETT" condition="eq" right-variable="varDelete"/>
             </where>
