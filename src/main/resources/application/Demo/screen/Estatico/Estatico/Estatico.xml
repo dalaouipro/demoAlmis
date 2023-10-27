@@ -47,6 +47,13 @@
             </dependency>
         </button>
 
+        <button id="BtnConfv2" label="Confirmar v2" icon="check-square">
+            <button-action type="server" server-action="maintain" target-action="MtnEstMulV2"/>
+            <button-action type="filter" target="gridEstE"/>
+            <dependency target-type="show" initial="true">
+                <dependency-element id="tabEstatico" condition="eq" value="Editable" />
+            </dependency>
+        </button>
         <button id="BtnPrnt" label="Imprimir" icon="print">
             <button-action type="dialog" target="PrnOpt"/>
         </button>
@@ -85,7 +92,7 @@
             <tabcontainer id="Editable">
                 <grid
                         id="gridEstE" server-action="data" initial-load="query" target-action="QuerGridEstE"
-                        style="expand" send-operations="true">
+                        style="expand" send-operations="true" send-all="true" name="gridEstEName" >
                     <column name="colEstEId" label="Id" component="text" hidden="true"/>
                     <column name="colEstEEntidad" component="text" label="Entidad"/>
                     <column name="colEstEDescripcion" label="Descripcion" component="text"/>

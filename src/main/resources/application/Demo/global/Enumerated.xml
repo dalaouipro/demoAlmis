@@ -85,6 +85,9 @@
         <option label="Clients" value="Clients"/>
         <option label="Portfolio" value="Portfolio"/>
         <option label="Position" value="Position"/>
-<!--        <option label="Valorization" value="Valorization"/>-->
+    </group>
+    <group id="enumVal">
+        <option label="Total" value="total"/>
+        <option label="Details" value="details"/>
     </group>
 </enumerated>

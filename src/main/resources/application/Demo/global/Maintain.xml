@@ -204,7 +204,7 @@
         </delete>
     </target>
     <target name="MtnEstMul">
-        <multiple grid="gridEstE">
+        <multiple grid="gridEstE" >
             <table id="ORECFGETT"/>
             <field id="IDEORECFGETT" key="true" sequence="idOreEdit" variable="varId"/>
             <field id="ETT" variable="varETT"/>
@@ -220,6 +220,21 @@
             <variable id="varNIF" type="STRING" name="colEstENif"/>
         </multiple>
     </target>
+
+    <target name="MtnEstMulV2"  >
+      <!--  <retrieve-data  service="MtnEstMulV2srv" >-->
+        <serve service="MtnEstMulV2srv" >
+            <variable id="id" type="INTEGER"   name="colEstEId"/>
+            <variable id="entidad" type="STRING" name="colEstEEntidad"/>
+            <variable id="description" type="STRING" name="colEstEDescripcion"/>
+            <variable id="tipo" type="STRING" name="colEstETipoEntidad"/>
+            <variable id="numReq" type="STRING" name="colEstENumeroRegistro"/>
+            <variable id="nif" type="STRING"   name="colEstENif"/>
+
+        </serve>
+        <!--</retrieve-data>-->
+    </target>
+
     <target name="MntnCalIns">
         <insert>
             <table id="CALENDAR" alias="c"/>

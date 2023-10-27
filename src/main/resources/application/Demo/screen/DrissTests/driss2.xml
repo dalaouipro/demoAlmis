@@ -36,5 +36,8 @@
                 <column name="GrdSvcColBirthDate" label="Birth Date"/>
             </grid>
         </window>
+        <button id="btnTest" label="test">
+            <button-action type="server" server-action="data" target-action="querTest"/>
+        </button>
     </tag>
 </screen>

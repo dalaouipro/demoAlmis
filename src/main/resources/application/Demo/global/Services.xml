@@ -27,6 +27,15 @@
     <service id="SvcTest2">
         <java classname="org.example.services.testService" method="GrdSvcIns"/>
     </service>
+    <service id="SvcTest3">
+        <java classname="org.example.services.testService" method="GrdSvcTest"/>
+    </service>
 
+
+    <service id="MtnEstMulV2srv">
+        <java classname="org.example.services.testService" method="doInsert">
+            <service-parameter type="OBJECT" list="true" bean-class="org.example.dto.Estatico"/>
+        </java>
+    </service>
 
 </services>

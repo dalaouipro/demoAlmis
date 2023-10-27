@@ -579,50 +579,92 @@
         <field id="portfolio" alias="colIstrValPfl" table="p2"/>
         <field id="security" alias="colIstrValSec" table="p2"/>
         <field id="quantity" alias="colIstrValQty" table="p2"/>
+        <field id="date" alias="colIstrValDat" table="pr" transform="DATE"/>
+        <field id="pricing" alias="colIstrValPrc" table="pr"/>
+        <operation operator="MULT" alias="colIstrValVal">
+            <field id="quantity" table="p2"/>
+            <field id="pricing" table="pr"/>
+        </operation>
+        <join>
+            <table id="pricing" alias="pr"/>
+            <and>
+                <filter left-table="p2" left-field="security" condition="eq" right-table="pr" right-field="security"/>
+            </and>
+        </join>
+        <where>
+            <and>
+                <filter left-table="p2" left-field="portfolio" condition="eq" right-variable="varFiltGrdPfl" optional="true"/>
+                <filter left-table="p2" left-field="security" condition="eq" right-variable="varFiltGrdSec" optional="true"/>
+                <filter left-table="pr" left-field="date" condition="eq" right-variable="varFiltGrdDat" optional="true"/>
+                <filter left-table="pr" left-field="pricing" condition="eq" right-variable="varFiltGrdPrc" optional="true"/>
+                <filter left-table="p2" left-field="quantity" condition="eq" right-variable="varFiltGrdQty" optional="true"/>
+            </and>
+        </where>
+        <variable id="varFiltGrdPfl" type="STRING" name="crtValPfl"/>
+        <variable id="varFiltGrdSec" type="STRING" name="crtValSec"/>
+        <variable id="varFiltGrdDat" type="DATE" name="crtValDat"/>
+        <variable id="varFiltGrdPrc" type="INTEGER" name="crtValPrc"/>
+        <variable id="varFiltGrdQty" type="INTEGER" name="crtValQty"/>
+    </query>
+
+    <query id="querIstrValAll">
+        <table id="position2" alias="p2"/>
+        <field id="portfolio" alias="colIstrValPfl2" table="p2"/>
+        <operation operator="MULT" alias="colIstrValVal2" function="SUM">
+            <field id="quantity" table="p2"/>
+            <field id="pricing" table="pr"/>
+        </operation>
+        <join>
+            <table id="pricing" alias="pr"/>
+            <and>
+                <filter left-table="p2" left-field="security" condition="eq" right-table="pr" right-field="security"/>
+            </and>
+        </join>
+        <group-by field="portfolio"/>
+    </query>
+
+    <query id="querIstrFiltPfl" distinct="true">
+        <table id="position2"/>
+        <field id="portfolio" alias="value"/>
+        <field id="portfolio" alias="label"/>
+    </query>
+    <query id="querIstrFiltSec" distinct="true">
+        <table id="position2"/>
+        <field id="security" alias="value"/>
+        <field id="security" alias="label"/>
     </query>
     <query id="querIstrFiltDat">
         <table id="pricing"/>
         <field id="date" alias="value" transform="DATE"/>
         <field id="date" alias="label" transform="DATE"/>
-        <where>
-            <and>
-                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec"/>
-            </and>
-        </where>
-        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
     </query>
-    <query id="querIstrFiltPrc1">
+    <query id="querIstrFiltPrc" distinct="true">
         <table id="pricing"/>
         <field id="pricing" alias="value"/>
         <field id="pricing" alias="label"/>
-        <where>
-            <and>
-                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec"/>
-                <filter left-table="pricing" left-field="date" condition="eq" right-variable="varFiltDat"/>
-            </and>
-        </where>
-        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
-        <variable id="varFiltDat" type="DATE" name="colIstrValDat"/>
     </query>
-    <query id="querIstrFiltPrc2">
-        <table id="pricing"/>
-        <field id="pricing" alias="crtPrcTest2"/>
-        <where>
-            <and>
-                <filter left-table="pricing" left-field="security" condition="eq" right-variable="varFiltSec" optional="true"/>
-                <filter left-table="pricing" left-field="date" condition="eq" right-variable="varFiltDat" optional="true"/>
-            </and>
-        </where>
-        <variable id="varFiltSec" type="STRING" name="colIstrValSec"/>
-        <variable id="varFiltDat" type="DATE" name="colIstrValDat"/>
+    <query id="querIstrFiltQty" distinct="true">
+        <table id="position2"/>
+        <field id="quantity" alias="value"/>
+        <field id="quantity" alias="label"/>
     </query>
 
-<!--    <query id="querIstrFiltVal">-->
-<!--        <table id="position2"/>-->
-<!--        <field id="resultat"/>-->
-<!--        <operation operator="MULT" alias="resultat">-->
-<!--            <-->
-<!--        </operation>-->
-<!--    </query>-->
+    <query id="querIstrTest1">
+        <table id="awekey"/>
+        <field id="keyval" alias="value"/>
+        <where>
+            <filter left-table="awekey" left-field="keyval" condition="eq" right-variable="myvar"/>
+        </where>
+        <variable id="myvar" type="INTEGER" value="91"/>
+    </query>
+
+    <query id="querIstrTest2">
+        <table id="awekey"/>
+        <computed alias="value" format="[val]"/>
+        <computed alias="label" format="[val]"/>
+        <field id="keyval" alias="val"/>
+    </query>
+
+    <query id="querTest" service="SvcTest3"/>
 
 </queries>
