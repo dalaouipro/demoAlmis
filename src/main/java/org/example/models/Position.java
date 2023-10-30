@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @EqualsAndHashCode
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "position3")
 public class Position {
     @Id
     Integer id;

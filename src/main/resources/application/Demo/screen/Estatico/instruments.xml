@@ -10,9 +10,9 @@
         template="window"
 >
     <tag source="center">
-        <window id="IstrDtl" label="Instrument details" expandible="vertical" style="expand">
+        <window id="IstrDtl" label="Instrument details" style="expand">
             <tab id="tabIstr" initial-load="enum" target-action="enumIstr">
-                <tabcontainer id="Securities">
+                <tabcontainer id="Securities" expandible="horizontal">
                     <grid id="grdSec" initial-load="query" target-action="querIstrSec" style="expand" send-operations="true">
                         <column name="colIstrSecNam" label="Name" component="text"/>
                         <column name="colIstrSecTyp" label="Type" component="text"/>
@@ -29,6 +29,11 @@
                             </dependency>
                         </button>
                     </grid>
+                    <chart id="MyChart" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" style="expand">
+                        <x-axis label="typ"/>
+                        <y-axis label="cnt"/>
+                        <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+                    </chart>
                 </tabcontainer>
                 <tabcontainer id="Pricing">
                     <grid id="grdPrc" initial-load="query" target-action="querIstrPrc" style="expand" send-operations="true">
