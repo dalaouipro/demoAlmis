@@ -229,8 +229,7 @@
             <variable id="description" type="STRING" name="colEstEDescripcion"/>
             <variable id="tipo" type="STRING" name="colEstETipoEntidad"/>
             <variable id="numReq" type="STRING" name="colEstENumeroRegistro"/>
-            <variable id="nif" type="STRING"   name="colEstENif"/>
-
+            <variable id="nif" type="STRING"  name="colEstENif"/>
         </serve>
         <!--</retrieve-data>-->
     </target>

@@ -92,7 +92,7 @@
             <tabcontainer id="Editable">
                 <grid
                         id="gridEstE" server-action="data" initial-load="query" target-action="QuerGridEstE"
-                        style="expand" send-operations="true" send-all="true" name="gridEstEName" >
+                        style="expand" send-operations="true" send-all="true" name="gridEstEName" multiselect="true" >
                     <column name="colEstEId" label="Id" component="text" hidden="true"/>
                     <column name="colEstEEntidad" component="text" label="Entidad"/>
                     <column name="colEstEDescripcion" label="Descripcion" component="text"/>

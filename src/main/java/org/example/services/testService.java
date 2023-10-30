@@ -11,7 +11,7 @@ import com.almis.awe.service.MaintainService;
 import com.almis.awe.service.QueryService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.example.dto.Estatico;
+import org.example.models.Estatico;
 import org.example.dto.PersonDto;
 import org.example.models.Customer;
 import org.example.models.Person;
@@ -136,7 +136,7 @@ public class testService extends ServiceConfig {
         return valuations;
     }
 
-    public void getPersonTest(PersonDto personDto) throws AWException, ParseException {
+    public void SvcGrdIns(PersonDto personDto) throws AWException, ParseException {
         Person MyPers = new ModelMapper().map(personDto, Person.class);
         personRepo.save(MyPers);
         System.out.println(MyPers);
@@ -149,11 +149,8 @@ public class testService extends ServiceConfig {
         }
     }
 
-
-    public ServiceData GrdSvcIns() throws AWException, ParseException {
-
+    public ServiceData SvcGrdFill() throws AWException, ParseException {
         //getRequest().getParameterList()getParameter("GrdSvc").;
-
         ServiceData serviceData = new ServiceData();
         ClientAction fillGrdAction = new ClientAction("fill");
         fillGrdAction.setTarget("GrdSvc");
@@ -162,12 +159,13 @@ public class testService extends ServiceConfig {
         serviceData.addClientAction(fillGrdAction);
         return serviceData;
     }
-    public void GrdSvcTest() throws AWException, ParseException {
-        getRequest().getParameterList();
-    }
 
     public void doInsert(List<Estatico> estatico) throws AWException, ParseException {
-
+        DataList dlPersons = queryService.launchQuery("QuerGridEstE").getDataList();
+        List<Person> listPerson = new ArrayList<>();
+        for (Map<String, CellData> element : dlPersons.getRows()) {
+            listPerson.add(new Person(element));
+        }
         getRequest().getParameterList();
 
     }

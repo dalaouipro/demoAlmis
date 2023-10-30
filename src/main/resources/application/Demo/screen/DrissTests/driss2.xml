@@ -22,22 +22,19 @@
                 <tag type="div" style="panel-footer">
                     <button id="BtnService" label="test service">
                         <button-action type="validate" target="WinDriss21Tag"/>
-                        <button-action type="server" server-action="data" target-action="QuerSvcTest"/>
+                        <button-action type="server" server-action="data" target-action="SvcGrdIns"/>
                         <button-action type="filter" target="GrdSvc"/>
                     </button>
                 </tag>
             </tag>
         </window>
         <window id="WinDriss22" expandible="vertical" style="expand">
-            <grid id="GrdSvc" style="expand" initial-load="query" target-action="QuerSvcTest2" autoload="true">
+            <grid id="GrdSvc" style="expand" initial-load="query" target-action="QuerSvcGrdFill" autoload="true">
                 <column name="GrdSvcColId" label="Id"/>
                 <column name="GrdSvcColName" label="Name"/>
                 <column name="GrdSvcColAlive" label="Alive"/>
                 <column name="GrdSvcColBirthDate" label="Birth Date"/>
             </grid>
         </window>
-        <button id="btnTest" label="test">
-            <button-action type="server" server-action="data" target-action="querTest"/>
-        </button>
     </tag>
 </screen>

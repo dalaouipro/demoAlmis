@@ -462,12 +462,12 @@
         <field id="Alive" alias="GrdSvcColAlive"/>
         <field id="BirthDate" alias="GrdSvcColBirthDate" transform="DATE"/>
     </query>
-    <query id="QuerSvcTest" service="SvcTest">
+    <query id="SvcGrdIns" service="SvcGrdIns">
         <variable id="Name" type="STRING" name="GrdSvcCrtName"/>
         <variable id="Alive" type="BOOLEAN" name="GrdSvcCrtAlive"/>
         <variable id="Birthdate" type="DATE" name="GrdSvcCrtBirthDate"/>
     </query>
-    <query id="QuerSvcTest2" service="SvcTest2"/>
+    <query id="QuerSvcGrdFill" service="SvcGrdFill"/>
     <query id="QuerDepTestMain">
         <table id="families" alias="f"/>
         <field id="id" alias="colDepMainId" table="f"/>
@@ -664,7 +664,5 @@
         <computed alias="label" format="[val]"/>
         <field id="keyval" alias="val"/>
     </query>
-
-    <query id="querTest" service="SvcTest3"/>
 
 </queries>

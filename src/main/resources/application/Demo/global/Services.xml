@@ -19,23 +19,21 @@
     <service id="ValuationService">
         <java classname="org.example.services.ValuationService" method="getValuation"/>
     </service>
-    <service id="SvcTest">
-        <java classname="org.example.services.testService" method="getPersonTest">
+    <service id="SvcGrdFill">
+        <java classname="org.example.services.testService" method="SvcGrdFill"/>
+    </service>
+    <service id="SvcGrdIns">
+        <java classname="org.example.services.testService" method="SvcGrdIns">
             <service-parameter type="OBJECT" bean-class="org.example.dto.PersonDto"/>
         </java>
     </service>
-    <service id="SvcTest2">
-        <java classname="org.example.services.testService" method="GrdSvcIns"/>
-    </service>
-    <service id="SvcTest3">
-        <java classname="org.example.services.testService" method="GrdSvcTest"/>
-    </service>
 
-
+    <!-- Test services here -->
     <service id="MtnEstMulV2srv">
         <java classname="org.example.services.testService" method="doInsert">
-            <service-parameter type="OBJECT" list="true" bean-class="org.example.dto.Estatico"/>
+            <service-parameter type="OBJECT" list="true" bean-class="org.example.models.Estatico"/>
         </java>
     </service>
+    <!-- Test services here end -->
 
 </services>
