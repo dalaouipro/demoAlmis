@@ -546,7 +546,8 @@
         <field id="name" alias="colDepAux4Name"/>
     </query>
     <query id="querIstrSec">
-        <table id="security"/>
+        <table id="security3"/>
+        <field id="id" alias="colIstrSecId"/>
         <field id="name" alias="colIstrSecNam"/>
         <field id="type" alias="colIstrSecTyp"/>
         <field id="emitter" alias="colIstrSecEmt"/>
@@ -554,28 +555,32 @@
         <field id="risk" alias="colIstrSecRsk"/>
     </query>
     <query id="querIstrPrc">
-        <table id="pricing"/>
+        <table id="pricing3"/>
+        <field id="id" alias="colIstrPrcId"/>
         <field id="security" alias="colIstrPrcSec"/>
         <field id="date" alias="colIstrPrcDate" transform="DATE"/>
         <field id="pricing" alias="colIstrPrcPrc"/>
     </query>
     <query id="querIstrCli">
-        <table id="client"/>
+        <table id="client3"/>
+        <field id="id" alias="colIstrCliId"/>
         <field id="name" alias="colIstrCliNam"/>
     </query>
-    <query id="querIstrPfl">
-        <table id="portfolio2"/>
-        <field id="code" alias="colIstrPflCod"/>
+    <query id="querIstrCliPfl">
+        <table id="clientportfolio3"/>
+        <field id="id" alias="colIstrPflId"/>
+        <field id="portfolio" alias="colIstrPflPfl"/>
         <field id="client" alias="colIstrPflCli"/>
     </query>
     <query id="querIstrPos">
-        <table id="position2" alias="p2"/>
+        <table id="position3" alias="p2"/>
+        <field id="id" alias="colIstrPosId"/>
         <field id="portfolio" alias="colIstrPosPfl" table="p2"/>
         <field id="security" alias="colIstrPosSec" table="p2"/>
         <field id="quantity" alias="colIstrPosQty" table="p2"/>
     </query>
     <query id="querIstrVal">
-        <table id="position2" alias="p2"/>
+        <table id="position3" alias="p2"/>
         <field id="portfolio" alias="colIstrValPfl" table="p2"/>
         <field id="security" alias="colIstrValSec" table="p2"/>
         <field id="quantity" alias="colIstrValQty" table="p2"/>
@@ -586,7 +591,7 @@
             <field id="pricing" table="pr"/>
         </operation>
         <join>
-            <table id="pricing" alias="pr"/>
+            <table id="pricing3" alias="pr"/>
             <and>
                 <filter left-table="p2" left-field="security" condition="eq" right-table="pr" right-field="security"/>
             </and>
@@ -608,14 +613,14 @@
     </query>
 
     <query id="querIstrValAll">
-        <table id="position2" alias="p2"/>
+        <table id="position3" alias="p2"/>
         <field id="portfolio" alias="colIstrValPfl2" table="p2"/>
         <operation operator="MULT" alias="colIstrValVal2" function="SUM">
             <field id="quantity" table="p2"/>
             <field id="pricing" table="pr"/>
         </operation>
         <join>
-            <table id="pricing" alias="pr"/>
+            <table id="pricing3" alias="pr"/>
             <and>
                 <filter left-table="p2" left-field="security" condition="eq" right-table="pr" right-field="security"/>
             </and>
@@ -624,27 +629,27 @@
     </query>
 
     <query id="querIstrFiltPfl" distinct="true">
-        <table id="position2"/>
+        <table id="position3"/>
         <field id="portfolio" alias="value"/>
         <field id="portfolio" alias="label"/>
     </query>
     <query id="querIstrFiltSec" distinct="true">
-        <table id="position2"/>
+        <table id="position3"/>
         <field id="security" alias="value"/>
         <field id="security" alias="label"/>
     </query>
     <query id="querIstrFiltDat">
-        <table id="pricing"/>
+        <table id="pricing3"/>
         <field id="date" alias="value" transform="DATE"/>
         <field id="date" alias="label" transform="DATE"/>
     </query>
     <query id="querIstrFiltPrc" distinct="true">
-        <table id="pricing"/>
+        <table id="pricing3"/>
         <field id="pricing" alias="value"/>
         <field id="pricing" alias="label"/>
     </query>
     <query id="querIstrFiltQty" distinct="true">
-        <table id="position2"/>
+        <table id="position3"/>
         <field id="quantity" alias="value"/>
         <field id="quantity" alias="label"/>
     </query>

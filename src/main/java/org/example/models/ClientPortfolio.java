@@ -14,9 +14,10 @@ import javax.persistence.Table;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "portfolio3")
-public class Portfolio {
+@Table(name = "clientportfolio3")
+public class ClientPortfolio {
     @Id
     Integer id;
     String portfolio;
+    String client;
 }

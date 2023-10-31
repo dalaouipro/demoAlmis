@@ -221,6 +221,72 @@
         </multiple>
     </target>
 
+    <target name="mtnGrdSec">
+        <multiple grid="grdSec" >
+            <table id="security3"/>
+            <field id="id" key="true" sequence="sec3id" variable="varId"/>
+            <field id="name" variable="varName"/>
+            <field id="type" variable="varType" />
+            <field id="emitter" variable="varEmitter" />
+            <field id="rating" variable="varRating" />
+            <field id="risk" variable="varRisk"/>
+            <variable id="varId" type="INTEGER" name="colIstrSecId"/>
+            <variable id="varName" type="STRING" name="colIstrSecNam"/>
+            <variable id="varType" type="STRING" name="colIstrSecTyp"/>
+            <variable id="varEmitter" type="STRING" name="colIstrSecEmt"/>
+            <variable id="varRating" type="STRING" name="colIstrSecRtg"/>
+            <variable id="varRisk" type="STRING" name="colIstrSecRsk"/>
+        </multiple>
+    </target>
+    <target name="mtnGrdPrc">
+        <multiple grid="grdPrc" >
+            <table id="pricing3"/>
+            <field id="id" key="true" sequence="prc3id" variable="varId"/>
+            <field id="security" variable="varSec"/>
+            <field id="date" variable="varDate"/>
+            <field id="pricing" variable="varPrc"/>
+            <variable id="varId" type="INTEGER" name="colIstrPrcId"/>
+            <variable id="varSec" type="STRING" name="colIstrPrcSec"/>
+            <variable id="varDate" type="DATE" name="colIstrPrcDate"/>
+            <variable id="varPrc" type="STRING" name="colIstrPrcPrc"/>
+        </multiple>
+    </target>
+    <target name="mtnGrdCli">
+        <multiple grid="grdCli" >
+            <table id="client3"/>
+            <field id="id" key="true" sequence="sec3id" variable="varId"/>
+            <field id="name" variable="varName"/>
+            <variable id="varId" type="INTEGER" name="colIstrCliId"/>
+            <variable id="varName" type="STRING" name="colIstrCliNam"/>
+        </multiple>
+    </target>
+    <target name="mtnGrdPfl">
+        <multiple grid="grdPfl" >
+            <table id="clientportfolio3"/>
+            <field id="id" key="true" sequence="sec3id" variable="varId"/>
+            <field id="portfolio" variable="varPfl"/>
+            <field id="client" variable="varCli" />
+            <variable id="varId" type="INTEGER" name="colIstrPflId"/>
+            <variable id="varPfl" type="STRING" name="colIstrPflPfl"/>
+            <variable id="varCli" type="STRING" name="colIstrPflCli"/>
+        </multiple>
+    </target>
+    <target name="mtnGrdPos">
+        <multiple grid="grdPos" >
+            <table id="position3"/>
+            <field id="id" key="true" sequence="sec3id" variable="varId"/>
+            <field id="portfolio" variable="varPfl"/>
+            <field id="security" variable="varSec" />
+            <field id="quantity" variable="varQty" />
+            <variable id="varId" type="INTEGER" name="colIstrPosId"/>
+            <variable id="varPfl" type="STRING" name="colIstrPosPfl"/>
+            <variable id="varSec" type="STRING" name="colIstrPosSec"/>
+            <variable id="varQty" type="STRING" name="colIstrPosQty"/>
+        </multiple>
+    </target>
+
+
+
     <target name="MtnEstMulV2"  >
       <!--  <retrieve-data  service="MtnEstMulV2srv" >-->
         <serve service="MtnEstMulV2srv" >
