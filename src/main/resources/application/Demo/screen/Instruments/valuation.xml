@@ -12,7 +12,7 @@
     <tag source="center">
         <tab id="tabVal" initial-load="enum" target-action="enumVal">
             <tabcontainer id="total">
-                <grid id="grdVal2" initial-load="query" target-action="querIstrValAll" style="expand">
+                <grid id="grdVal2" initial-load="query" target-action="querIstrValVal" style="expand">
                     <column name="colIstrValPfl2" label="Portfolio" component="text" sortable="false" readonly="true"/>
                     <column name="colIstrValVal2" label="Value" component="numeric" sortable="false">
                     </column>
@@ -20,15 +20,15 @@
             </tabcontainer>
             <tabcontainer id="details">
                 <tag type="div" style="panel-body static">
-                    <criteria component="select" id="crtValPfl" label="Portfolio" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrFiltPfl"/>
-                    <criteria component="select" id="crtValSec" label="Security" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrFiltSec"/>
-                    <criteria component="filtered-calendar" id="crtValDat" label="Date" style="col-lg-2" initial-load="query" target-action="querIstrFiltDat"/>
-                    <criteria component="select" id="crtValPrc" label="Pricing" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrFiltPrc"/>
-                    <criteria component="select" id="crtValQty" label="Quantity" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrFiltQty"/>
+                    <criteria component="select" id="crtValPfl" label="Portfolio" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrValPfl"/>
+                    <criteria component="select" id="crtValSec" label="Security" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrValSec"/>
+                    <criteria component="filtered-calendar" id="crtValDat" label="Date" style="col-lg-2" initial-load="query" target-action="querIstrValDat"/>
+                    <criteria component="select" id="crtValPrc" label="Pricing" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrValPrc"/>
+                    <criteria component="select" id="crtValQty" label="Quantity" optional="true" style="col-lg-2" initial-load="query" target-action="querIstrValQty"/>
                 </tag>
                 <tag type="div" style="panel-footer">
                     <button id="BtnIstrValSrch" label="search" icon="search" style="col-lg">
-                        <button-action type="server" server-action="data" target-action="querIstrVal" target="grdVal"/>
+                        <button-action type="server" server-action="data" target-action="querIstrDtlVal" target="grdVal"/>
                     </button>
                     <button id="BtnIstrValRset" label="refresh" icon="refresh" style="col-lg">
                         <button-action type="restore" target="crtValPfl"/>
@@ -40,7 +40,7 @@
                     </button>
                 </tag>
 
-                <grid id="grdVal" target-action="querIstrVal" style="expand" max="8">
+                <grid id="grdVal" style="expand" max="8">
                     <!--
                     <dependency target-type="hide" initial="true">
                         <dependency-element id="grdVal"/>

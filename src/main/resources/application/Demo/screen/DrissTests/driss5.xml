@@ -11,7 +11,32 @@
         template="window"
 >
     <tag source="center">
-        <chart id="MyChart" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" >
+        <chart id="MyChart1" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" >
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+        <chart id="MyChart2" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" theme="dark-unica">
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+        <chart id="MyChart3" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" theme="dark-green">
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+        <chart id="MyChart4" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" theme="dark-blue">
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+        <chart id="MyChart5" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" theme="gray">
+            <x-axis label="typ"/>
+            <y-axis label="cnt"/>
+            <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>
+        </chart>
+        <chart id="MyChart6" label="Test Chart" type="pie_3d" initial-load="query" target-action="QuerChart" theme="grid">
             <x-axis label="typ"/>
             <y-axis label="cnt"/>
             <chart-serie id="MySerie" x-value="typ" y-value="cnt" label="amount"/>

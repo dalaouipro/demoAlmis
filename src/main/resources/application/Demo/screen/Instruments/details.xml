@@ -50,7 +50,7 @@
     <tag source="center">
         <tab id="tabIstr" initial-load="enum" target-action="enumIstr">
             <tabcontainer id="Securities" expandible="horizontal">
-                <grid id="grdSec" initial-load="query" target-action="querIstrSec" style="expand" send-operations="true">
+                <grid id="grdSec" initial-load="query" target-action="querIstrDtlSec" style="expand" send-operations="true">
                     <column name="colIstrSecId" label="Id" component="text" hidden="true"/>
                     <column name="colIstrSecNam" label="Name" component="text"/>
                     <column name="colIstrSecTyp" label="Type" component="text"/>
@@ -76,7 +76,7 @@
                 -->
             </tabcontainer>
             <tabcontainer id="Pricing">
-                <grid id="grdPrc" initial-load="query" target-action="querIstrPrc" style="expand" send-operations="true">
+                <grid id="grdPrc" initial-load="query" target-action="querIstrDtlPrc" style="expand" send-operations="true">
                     <column name="colIstrPrcId" label="Id" component="text" hidden="true"/>
                     <column name="colIstrPrcSec" label="Security" component="text"/>
                     <column name="colIstrPrcDate" label="Date" component="date"/>
@@ -93,7 +93,7 @@
                 </grid>
             </tabcontainer>
             <tabcontainer id="Clients">
-                <grid id="grdCli" initial-load="query" target-action="querIstrCli" style="expand" send-operations="true">
+                <grid id="grdCli" initial-load="query" target-action="querIstrDtlCli" style="expand" send-operations="true">
                     <column name="colIstrCliId" label="Id" component="text" hidden="true"/>
                     <column name="colIstrCliNam" label="Name" component="text"/>
                     <button id="BtnGrdCliIns" label="BUTTON_NEW" icon="plus-circle">
@@ -108,7 +108,7 @@
                 </grid>
             </tabcontainer>
             <tabcontainer id="Portfolio">
-                <grid id="grdPfl" initial-load="query" target-action="querIstrCliPfl" style="expand" send-operations="true">
+                <grid id="grdPfl" initial-load="query" target-action="querIstrDtlCliPfl" style="expand" send-operations="true">
                     <column name="colIstrPflId" label="Id" component="text" hidden="true"/>
                     <column name="colIstrPflPfl" label="Portfolio" component="text"/>
                     <column name="colIstrPflCli" label="Client" component="text"/>
@@ -124,7 +124,7 @@
                 </grid>
             </tabcontainer>
             <tabcontainer id="Position">
-                <grid id="grdPos" initial-load="query" target-action="querIstrPos" style="expand" send-operations="true">
+                <grid id="grdPos" initial-load="query" target-action="querIstrDtlPos" style="expand" send-operations="true">
                     <column name="colIstrPosId" label="Id" component="text" hidden="true"/>
                     <column name="colIstrPosPfl" label="PortFolio" component="text"/>
                     <column name="colIstrPosSec" label="Security" component="text"/>
@@ -145,14 +145,14 @@
         <!--
         <button id="btnTest" label="test"/>
 
-        <criteria id="CrtIstrTest1" component="numeric" server-action="value" target-action="querIstrTest1">
+        <criteria id="CrtIstrTest1" component="numeric" server-action="value" target-action="querIstrDtlTest1">
             <dependency initial="true">
                 <dependency-element id="btnTest" event="click"/>
                 <dependency-action type="filter" target="CrtIstrTest1"/>
             </dependency>
         </criteria>
 
-        <criteria id="CrtIstrTest2" component="select" server-action="data" initial-load="query" target-action="querIstrTest2">
+        <criteria id="CrtIstrTest2" component="select" server-action="data" initial-load="query" target-action="querIstrDtlTest2">
             <dependency initial="true">
                 <dependency-element id="btnTest" event="click"/>
                 <dependency-action type="filter" target="CrtIstrTest"/>

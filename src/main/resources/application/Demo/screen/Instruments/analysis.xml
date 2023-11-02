@@ -10,15 +10,45 @@
         template="window"
 >
     <tag source="center">
-        <chart id="ChrLinTst" label="PRICING CHART" type="line" theme="dark-unica" initial-load="query" target-action="priceByDateChart" zoom-type="xAxis" max="30" >
-            <chart-legend label="Leyenda" verticalAlign="middle" align="right" border-width="1"/>
-            <x-axis label="Pricing Date" type="datetime"/>
-            <y-axis label="Price"/>
-            <chart-tooltip crosshairs="xAxis" suffix=" $" number-decimals="1"/>
-            <chart-serie id="price" x-value="dates" y-value="price" label="price" color="#0080FF"/>
-            <context-button id="CtxLinTstRef" label="BUTTON_RELOAD" icon="refresh">
-                <button-action type="server" server-action="data" target-action="priceByDateChart" target="ChrLinTst"/>
-            </context-button>
-        </chart>
+        <window id="winIstrAna1" style="expand">
+            <criteria
+                    id="crtFiltSec" component="select" label="Filter security" initial-load="query"
+                    target-action="querIstrAnaCrtSec" optional="true" style="col-lg-2 col-lg-offset-5"
+            />
+            <chart id="chrtIstrAna1" label="Pricing chart" type="line" initial-load="query" target-action="querIstrAna1" stock-chart="true" style="col-lg-8 col-lg-offset-2">
+                <chart-serie id="pricing" x-value="date" y-value="pricing" label="pricing"/>
+                <chart-tooltip crosshairs="xAxis" suffix="$" number-decimals="1"/>
+                <dependency>
+                    <dependency-element id="crtFiltSec" attribute="value"/>
+                    <dependency-action type="filter"/>
+                </dependency>
+            </chart>
+        </window>
+        <window id="winIstrAna2" style="expand">
+            <chart id="chrtIstrAna2" label="Type Chart" type="pie" initial-load="query" target-action="querIstrAna2" >
+                <chart-serie id="MySerie" x-value="type" y-value="count" label="amount"/>
+                <chart-legend label="Security types" enabled="true"/>
+            </chart>
+        </window>
+        <window id="winIstrAna3" style="expand">
+            <chart id="chrtIstrAna3" label="Risk Chart" type="column" initial-load="query" target-action="querIstrAna3" >
+                <chart-serie id="MySerie" x-value="name" y-value="risk" label="amount"/>
+                <chart-legend label="Security risk" enabled="true"/>
+            </chart>
+        </window>
+        <window id="winIstrAna4" style="expand">
+<!--            <criteria-->
+<!--                    id="crtFiltSec2" component="select" label="Profitability" initial-load="query"-->
+<!--                    target-action="querIstrAnaCrtSec" optional="true" style="col-lg-2 col-lg-offset-5"-->
+<!--            />-->
+            <grid id="grdIstrAnaRen" initial-load="query" target-action="querIstrAna4" style="expand">
+                <column name="colSec" label="Security" component="text"/>
+                <column name="colRen" label="Rentability" component="numeric">
+<!--                    <dependency initial="true" target-type="attribute" source-type="value">-->
+<!--                        <dependency-element id="grdIstrAnaRen" column="colRen" attribute="currentRowValue" condition="gt" value="0"/>-->
+<!--                    </dependency>-->
+                </column>
+            </grid>
+        </window>
     </tag>
 </screen>

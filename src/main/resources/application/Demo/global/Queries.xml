@@ -545,7 +545,7 @@
         <field id="id" alias="colDepAux4Id"/>
         <field id="name" alias="colDepAux4Name"/>
     </query>
-    <query id="querIstrSec">
+    <query id="querIstrDtlSec">
         <table id="security3"/>
         <field id="id" alias="colIstrSecId"/>
         <field id="name" alias="colIstrSecNam"/>
@@ -554,32 +554,32 @@
         <field id="rating" alias="colIstrSecRtg"/>
         <field id="risk" alias="colIstrSecRsk"/>
     </query>
-    <query id="querIstrPrc">
+    <query id="querIstrDtlPrc">
         <table id="pricing3"/>
         <field id="id" alias="colIstrPrcId"/>
         <field id="security" alias="colIstrPrcSec"/>
         <field id="date" alias="colIstrPrcDate" transform="DATE"/>
         <field id="pricing" alias="colIstrPrcPrc"/>
     </query>
-    <query id="querIstrCli">
+    <query id="querIstrDtlCli">
         <table id="client3"/>
         <field id="id" alias="colIstrCliId"/>
         <field id="name" alias="colIstrCliNam"/>
     </query>
-    <query id="querIstrCliPfl">
+    <query id="querIstrDtlCliPfl">
         <table id="clientportfolio3"/>
         <field id="id" alias="colIstrPflId"/>
         <field id="portfolio" alias="colIstrPflPfl"/>
         <field id="client" alias="colIstrPflCli"/>
     </query>
-    <query id="querIstrPos">
+    <query id="querIstrDtlPos">
         <table id="position3" alias="p2"/>
         <field id="id" alias="colIstrPosId"/>
         <field id="portfolio" alias="colIstrPosPfl" table="p2"/>
         <field id="security" alias="colIstrPosSec" table="p2"/>
         <field id="quantity" alias="colIstrPosQty" table="p2"/>
     </query>
-    <query id="querIstrVal">
+    <query id="querIstrDtlVal">
         <table id="position3" alias="p2"/>
         <field id="portfolio" alias="colIstrValPfl" table="p2"/>
         <field id="security" alias="colIstrValSec" table="p2"/>
@@ -612,7 +612,7 @@
         <variable id="varFiltGrdQty" type="INTEGER" name="crtValQty"/>
     </query>
 
-    <query id="querIstrValAll">
+    <query id="querIstrValVal">
         <table id="position3" alias="p2"/>
         <field id="portfolio" alias="colIstrValPfl2" table="p2"/>
         <operation operator="MULT" alias="colIstrValVal2" function="SUM">
@@ -628,33 +628,34 @@
         <group-by field="portfolio"/>
     </query>
 
-    <query id="querIstrFiltPfl" distinct="true">
+    <query id="querIstrValPfl" distinct="true">
         <table id="position3"/>
         <field id="portfolio" alias="value"/>
         <field id="portfolio" alias="label"/>
     </query>
-    <query id="querIstrFiltSec" distinct="true">
+    <query id="querIstrValSec" distinct="true">
         <table id="position3"/>
         <field id="security" alias="value"/>
         <field id="security" alias="label"/>
     </query>
-    <query id="querIstrFiltDat">
+    <query id="querIstrValDat">
         <table id="pricing3"/>
         <field id="date" alias="value" transform="DATE"/>
         <field id="date" alias="label" transform="DATE"/>
     </query>
-    <query id="querIstrFiltPrc" distinct="true">
+    <query id="querIstrValPrc" distinct="true">
         <table id="pricing3"/>
         <field id="pricing" alias="value"/>
         <field id="pricing" alias="label"/>
     </query>
-    <query id="querIstrFiltQty" distinct="true">
+    <query id="querIstrValQty" distinct="true">
         <table id="position3"/>
         <field id="quantity" alias="value"/>
         <field id="quantity" alias="label"/>
     </query>
 
-    <query id="querIstrTest1">
+    <!--
+    <query id="querIstrDtlTest1">
         <table id="awekey"/>
         <field id="keyval" alias="value"/>
         <where>
@@ -662,12 +663,69 @@
         </where>
         <variable id="myvar" type="INTEGER" value="91"/>
     </query>
-
-    <query id="querIstrTest2">
+    <query id="querIstrDtlTest2">
         <table id="awekey"/>
         <computed alias="value" format="[val]"/>
         <computed alias="label" format="[val]"/>
         <field id="keyval" alias="val"/>
     </query>
+    -->
+
+    <query id="querIstrAnaCrtSec" distinct="true">
+        <table id="pricing3"/>
+        <field id="security" alias="value"/>
+        <field id="security" alias="label"/>
+    </query>
+    <query id="querIstrAna1">
+        <table id="pricing3"/>
+        <field id="date" transform="DATE_MS"/>
+        <field id="pricing"/>
+        <where>
+            <filter left-table="pricing3" left-field="security" condition="eq" right-variable="varSec"/>
+        </where>
+        <order-by field="date" type="ASC"/>
+        <variable id="varSec" type="STRING" name="crtFiltSec"/>
+    </query>
+    <query id="querIstrAna2">
+        <table id="security3"/>
+        <field id="type"/>
+        <field id="type" function="CNT" alias="count"/>
+        <group-by field="type"/>
+    </query>
+    <query id="querIstrAna3">
+        <table id="security3"/>
+        <field id="name"/>
+        <field id="risk"/>
+    </query>
+    <query id="querIstrAna4SubSub">
+        <table id="pricing3" alias="p3"/>
+        <field id="security" table="p3"/>
+        <field id="date" table="p3" function="MAX" alias="maxDate"/>
+        <field id="date" table="p3" function="MIN" alias="minDate"/>
+        <group-by field="security"/>
+    </query>
+    <query id="querIstrAna4Sub1">
+        <field id="pricing" table="p3max"/>
+        <table id="pricing3" alias="p3max"/>
+        <where>
+            <filter left-table="p3max" left-field="date" condition="eq" right-table="de" right-field="maxDate"/>
+        </where>
+    </query>
+    <query id="querIstrAna4Sub2">
+        <field id="pricing" table="p3min"/>
+        <table id="pricing3" alias="p3min"/>
+        <where>
+            <filter left-table="p3min" left-field="date" condition="eq" right-table="de" right-field="minDate"/>
+        </where>
+    </query>
+    <query id="querIstrAna4">
+        <field id="security" table="de" alias="colSec"/>
+        <operation operator="SUB" alias="colRen">
+            <field query="querIstrAna4Sub1"/>
+            <field query="querIstrAna4Sub2"/>
+        </operation>
+        <table query="querIstrAna4SubSub" alias="de"/>
+    </query>
 
 </queries>
+
