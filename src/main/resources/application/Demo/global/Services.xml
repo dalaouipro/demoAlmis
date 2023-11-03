@@ -34,6 +34,9 @@
             <service-parameter type="OBJECT" list="true" bean-class="org.example.models.Estatico"/>
         </java>
     </service>
+    <service id="MtnTestScreenSvc">
+        <java classname="org.example.services.testService" method="myFunction"/>
+    </service>
     <!-- Test services here end -->
 
 </services>

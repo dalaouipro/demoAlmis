@@ -85,6 +85,7 @@
     <option name="Calendar" label="Calendar" screen="Calendar"/>
   </option>
   <option name="instrument0" label="Instruments">
+    <option name="testScreen" label="Test" screen="testScreen"/>
     <option name="details" label="Details" screen="details"/>
     <option name="valuation" label="Valuation" screen="valuation"/>
     <option name="analysis" label="Analysis" screen="analysis"/>

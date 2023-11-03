@@ -314,4 +314,9 @@
             <variable id="varPERIODICITY" type="STRING" name="CalInsPeri" />
         </insert>
     </target>
+
+    <target name="MtnTestScreen">
+        <serve service="MtnTestScreenSvc"/>
+    </target>
+
 </maintain>

@@ -15,7 +15,7 @@
                     id="crtFiltSec" component="select" label="Filter security" initial-load="query"
                     target-action="querIstrAnaCrtSec" optional="true" style="col-lg-2 col-lg-offset-5"
             />
-            <chart id="chrtIstrAna1" label="Pricing chart" type="line" initial-load="query" target-action="querIstrAna1" stock-chart="true" style="col-lg-8 col-lg-offset-2">
+            <chart id="chrtIstrAna1" label="Pricing chart" type="line" target-action="querIstrAna1" stock-chart="true" style="col-lg-8 col-lg-offset-2">
                 <chart-serie id="pricing" x-value="date" y-value="pricing" label="pricing"/>
                 <chart-tooltip crosshairs="xAxis" suffix="$" number-decimals="1"/>
                 <dependency>

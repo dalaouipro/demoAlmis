@@ -1,11 +1,19 @@
 package org.example.services;
 
+import com.almis.awe.builder.client.ScreenActionBuilder;
+import com.almis.awe.builder.screen.ScreenBuilder;
+import com.almis.awe.builder.screen.TagBuilder;
+import com.almis.awe.builder.screen.criteria.TextCriteriaBuilder;
 import com.almis.awe.config.ServiceConfig;
 import com.almis.awe.exception.AWException;
 import com.almis.awe.model.dto.CellData;
 import com.almis.awe.model.dto.DataList;
 import com.almis.awe.model.dto.ServiceData;
 import com.almis.awe.model.entities.actions.ClientAction;
+import com.almis.awe.model.entities.menu.Menu;
+import com.almis.awe.model.entities.menu.Option;
+import com.almis.awe.model.entities.screen.Screen;
+import com.almis.awe.model.entities.screen.component.Window;
 import com.almis.awe.model.util.data.DataListUtil;
 import com.almis.awe.service.MaintainService;
 import com.almis.awe.service.QueryService;
@@ -136,7 +144,7 @@ public class testService extends ServiceConfig {
         return valuations;
     }
 
-    public void SvcGrdIns(PersonDto personDto) throws AWException, ParseException {
+    public void SvcGrdIns(PersonDto personDto) throws AWException {
         Person MyPers = new ModelMapper().map(personDto, Person.class);
         personRepo.save(MyPers);
         System.out.println(MyPers);
@@ -149,7 +157,7 @@ public class testService extends ServiceConfig {
         }
     }
 
-    public ServiceData SvcGrdFill() throws AWException, ParseException {
+    public ServiceData SvcGrdFill() throws AWException {
         //getRequest().getParameterList()getParameter("GrdSvc").;
         ServiceData serviceData = new ServiceData();
         ClientAction fillGrdAction = new ClientAction("fill");
@@ -160,7 +168,7 @@ public class testService extends ServiceConfig {
         return serviceData;
     }
 
-    public void doInsert(List<Estatico> estatico) throws AWException, ParseException {
+    public void doInsert(List<Estatico> estatico) throws AWException {
         DataList dlPersons = queryService.launchQuery("QuerGridEstE").getDataList();
         List<Person> listPerson = new ArrayList<>();
         for (Map<String, CellData> element : dlPersons.getRows()) {
@@ -170,7 +178,81 @@ public class testService extends ServiceConfig {
 
     }
 
+    public ServiceData myFunction() throws AWException {
+        ScreenBuilder builder = new ScreenBuilder();
+        TagBuilder tagBuilder = new TagBuilder();
+        TextCriteriaBuilder textCriteriaBuilder = new TextCriteriaBuilder();
+        textCriteriaBuilder.setId("crtJavaTest").setValue("bla bla");
+        tagBuilder.setSource("center").addCriteria(textCriteriaBuilder);
+//        builder.setId(UUID.randomUUID().toString());
+        builder.setId("myScreenId");
+        builder.addTag(tagBuilder);
+//        Screen screen = builder.build();
+//        getElements().setScreen(screen);
+        ServiceData serviceData = builder.buildClientAction(getElements());
+//        serviceData.addClientAction(new ScreenActionBuilder("myScreenId").build());
 
+        /*
+        ServiceData serviceData = new ServiceData();
 
+        String screeIdDyn = "screenid";
+//        String menuId = this.privateMenu;
+        String menuId = "private";
+        Menu menu = new Menu();
+        menu.setId(menuId);
+        menu = getElements().getMenu("private");
+
+        Option option = new Option();
+        option.setLabel("StateKey");
+        option.setName(screeIdDyn);
+        option.setScreen(screeIdDyn);
+        option.setInvisible(true);
+        menu.addElement(option);
+
+        Window window = new Window();
+        window.setId("window1");
+        window.setLabel("windowLabel");
+        window.setStyle("expand");
+        window.setExpand("horizontal");
+        window.setMaximize(true);
+        Screen s = getElements().getScreen("loadNewScreen");
+        s.setId(screeIdDyn);
+
+//        if(s.getElementList().get(1).getElementList().size() > 1){
+//            s.getElementList().get(1).getElementList().remove(1);
+//            s.getElementList().get(1).getElementList().add(window);
+//        }
+//        else {
+//            s.getElementList().get(1).getElementList().add(window);
+//        }
+//
+//        if(s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().size() > 0){
+//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().remove(0);
+//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().add(tab);
+//        }
+//        else {
+//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().add(tab);
+//        }
+        storeScreen(s,menu);
+        redirectTo(serviceData, screeIdDyn);
+        */
+
+        return serviceData;
+    }
+
+    /*
+    public void storeScreen(Screen screen, Menu menu) {
+        getElements().setScreen(screen);
+        getElements().setMenu(menu.getId(), menu);
+    }
+    private void redirectTo(ServiceData serviceData, String screenTarget) {
+//        ClientAction clientAction = new ClientAction(OreConstants.TARGET_ACTION_SCREEN);
+        ClientAction clientAction = new ClientAction();
+        clientAction.setTarget(screenTarget);
+        clientAction.setParameterMap(new HashMap<>());
+        serviceData.addClientAction(clientAction);
+    }
+    */
 
 }
+
