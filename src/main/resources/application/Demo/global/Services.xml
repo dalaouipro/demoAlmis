@@ -35,7 +35,7 @@
         </java>
     </service>
     <service id="MtnTestScreenSvc">
-        <java classname="org.example.services.testService" method="myFunction"/>
+        <java classname="org.example.services.testService" method="createScreen"/>
     </service>
     <!-- Test services here end -->
 

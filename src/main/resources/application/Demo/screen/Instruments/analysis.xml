@@ -11,6 +11,18 @@
 >
     <tag source="center">
         <window id="winIstrAna1" style="expand">
+<!--            <criteria-->
+<!--                    id="crtFiltTest" component="text" label="Test color" initial-load="query" value="text-success"-->
+<!--                    target-action="querIstrAnaCrtSec" style="col-lg-2 col-lg-offset-5"-->
+<!--            />-->
+<!--            <criteria-->
+<!--                    id="crtFiltTest2" component="text" label="Test color" initial-load="query"-->
+<!--                    target-action="querIstrAnaCrtSec" style="col-lg-2 col-lg-offset-5"-->
+<!--            >-->
+<!--&lt;!&ndash;                <dependency initial="true" target-type="attribute" source-type="value" target-action="style">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <dependency-element id="crtFiltTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </dependency>&ndash;&gt;-->
+<!--            </criteria>-->
             <criteria
                     id="crtFiltSec" component="select" label="Filter security" initial-load="query"
                     target-action="querIstrAnaCrtSec" optional="true" style="col-lg-2 col-lg-offset-5"
@@ -41,12 +53,10 @@
 <!--                    id="crtFiltSec2" component="select" label="Profitability" initial-load="query"-->
 <!--                    target-action="querIstrAnaCrtSec" optional="true" style="col-lg-2 col-lg-offset-5"-->
 <!--            />-->
+<!--            <grid id="grdIstrAnaRen" initial-load="query" target-action="querIstrAna4" style="expand col-lg-4 col-lg-offset-4">-->
             <grid id="grdIstrAnaRen" initial-load="query" target-action="querIstrAna4" style="expand">
                 <column name="colSec" label="Security" component="text"/>
                 <column name="colRen" label="Rentability" component="numeric">
-<!--                    <dependency initial="true" target-type="attribute" source-type="value">-->
-<!--                        <dependency-element id="grdIstrAnaRen" column="colRen" attribute="currentRowValue" condition="gt" value="0"/>-->
-<!--                    </dependency>-->
                 </column>
             </grid>
         </window>

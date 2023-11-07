@@ -4,9 +4,16 @@
     Document   : valuation.xml
     Author     : Driss ALAOUI
 -->
-<screen
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
-        template="window"
-        onload="MtnTestScreen"
-/>
+    <screen
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://aweframework.gitlab.io/awe/docs/schemas/screen.xsd"
+            template="window"
+    >
+    <tag source="center">
+        <criteria component="hidden" id="crtHid">
+            <dependency initial="true">
+                <dependency-action type="server" server-action="maintain" target-action="MtnTestScreen"/>
+            </dependency>
+        </criteria>
+    </tag>
+</screen>

@@ -1,6 +1,5 @@
 package org.example.services;
 
-import com.almis.awe.builder.client.ScreenActionBuilder;
 import com.almis.awe.builder.screen.ScreenBuilder;
 import com.almis.awe.builder.screen.TagBuilder;
 import com.almis.awe.builder.screen.criteria.TextCriteriaBuilder;
@@ -10,10 +9,6 @@ import com.almis.awe.model.dto.CellData;
 import com.almis.awe.model.dto.DataList;
 import com.almis.awe.model.dto.ServiceData;
 import com.almis.awe.model.entities.actions.ClientAction;
-import com.almis.awe.model.entities.menu.Menu;
-import com.almis.awe.model.entities.menu.Option;
-import com.almis.awe.model.entities.screen.Screen;
-import com.almis.awe.model.entities.screen.component.Window;
 import com.almis.awe.model.util.data.DataListUtil;
 import com.almis.awe.service.MaintainService;
 import com.almis.awe.service.QueryService;
@@ -178,19 +173,26 @@ public class testService extends ServiceConfig {
 
     }
 
-    public ServiceData myFunction() throws AWException {
+    public ServiceData createScreen() throws AWException {
+//        getElements().getScreen("testScreen");
         ScreenBuilder builder = new ScreenBuilder();
         TagBuilder tagBuilder = new TagBuilder();
         TextCriteriaBuilder textCriteriaBuilder = new TextCriteriaBuilder();
-        textCriteriaBuilder.setId("crtJavaTest").setValue("bla bla");
+        textCriteriaBuilder.setId("crtJavaTest").setValue("bla bla").setReadonly(true).setStyle("col-lg-2 col-lg-offset-5");
         tagBuilder.setSource("center").addCriteria(textCriteriaBuilder);
 //        builder.setId(UUID.randomUUID().toString());
-        builder.setId("myScreenId");
+        builder.setId("testScreen2");
+        builder.setTemplate("window");
         builder.addTag(tagBuilder);
-//        Screen screen = builder.build();
-//        getElements().setScreen(screen);
+        /*
+        getElements().setScreen(builder.build());
+        getElements().getScreen("testScreen");
+        Screen screen = builder.build();
+        getElements().setScreen(screen);
+        */
         ServiceData serviceData = builder.buildClientAction(getElements());
-//        serviceData.addClientAction(new ScreenActionBuilder("myScreenId").build());
+//        serviceData.addVariable("screenId","testScreen2");
+//        serviceData.addClientAction(new ScreenActionBuilder("testScreen2").build());
 
         /*
         ServiceData serviceData = new ServiceData();
@@ -239,20 +241,6 @@ public class testService extends ServiceConfig {
 
         return serviceData;
     }
-
-    /*
-    public void storeScreen(Screen screen, Menu menu) {
-        getElements().setScreen(screen);
-        getElements().setMenu(menu.getId(), menu);
-    }
-    private void redirectTo(ServiceData serviceData, String screenTarget) {
-//        ClientAction clientAction = new ClientAction(OreConstants.TARGET_ACTION_SCREEN);
-        ClientAction clientAction = new ClientAction();
-        clientAction.setTarget(screenTarget);
-        clientAction.setParameterMap(new HashMap<>());
-        serviceData.addClientAction(clientAction);
-    }
-    */
 
 }
 
