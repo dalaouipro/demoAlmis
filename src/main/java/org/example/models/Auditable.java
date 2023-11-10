@@ -2,6 +2,8 @@ package org.example.models;
 
 import java.util.Date;
 import javax.persistence.*;
+
+import javax.persistence.MappedSuperclass;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

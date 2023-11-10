@@ -12,7 +12,7 @@
     <tag source="center">
         <criteria component="hidden" id="crtHid">
             <dependency initial="true">
-                <dependency-action type="server" server-action="maintain" target-action="MtnTestScreen"/>
+                <dependency-action type="server" server-action="maintain-silent" target-action="MtnTestScreen"/>
             </dependency>
         </criteria>
     </tag>

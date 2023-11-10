@@ -1,8 +1,22 @@
 package org.example.services;
 
+import com.almis.awe.builder.enumerates.Action;
+import com.almis.awe.builder.enumerates.Condition;
+import com.almis.awe.builder.enumerates.InitialLoad;
+import com.almis.awe.builder.enumerates.TargetType;
 import com.almis.awe.builder.screen.ScreenBuilder;
 import com.almis.awe.builder.screen.TagBuilder;
+import com.almis.awe.builder.screen.button.ButtonActionBuilder;
+import com.almis.awe.builder.screen.button.ButtonBuilder;
 import com.almis.awe.builder.screen.criteria.TextCriteriaBuilder;
+import com.almis.awe.builder.screen.dependency.DependencyBuilder;
+import com.almis.awe.builder.screen.dependency.DependencyElementBuilder;
+import com.almis.awe.builder.screen.grid.CalendarColumnBuilder;
+import com.almis.awe.builder.screen.grid.GridBuilder;
+import com.almis.awe.builder.screen.grid.NumericColumnBuilder;
+import com.almis.awe.builder.screen.grid.TextColumnBuilder;
+import com.almis.awe.builder.screen.tab.TabBuilder;
+import com.almis.awe.builder.screen.tab.TabContainerBuilder;
 import com.almis.awe.config.ServiceConfig;
 import com.almis.awe.exception.AWException;
 import com.almis.awe.model.dto.CellData;
@@ -173,6 +187,7 @@ public class testService extends ServiceConfig {
 
     }
 
+    /*
     public ServiceData createScreen() throws AWException {
 //        getElements().getScreen("testScreen");
         ScreenBuilder builder = new ScreenBuilder();
@@ -184,63 +199,175 @@ public class testService extends ServiceConfig {
         builder.setId("testScreen2");
         builder.setTemplate("window");
         builder.addTag(tagBuilder);
-        /*
-        getElements().setScreen(builder.build());
-        getElements().getScreen("testScreen");
-        Screen screen = builder.build();
-        getElements().setScreen(screen);
-        */
+//        getElements().setScreen(builder.build());
+//        getElements().getScreen("testScreen");
+//        Screen screen = builder.build();
+//        getElements().setScreen(screen);
         ServiceData serviceData = builder.buildClientAction(getElements());
 //        serviceData.addVariable("screenId","testScreen2");
 //        serviceData.addClientAction(new ScreenActionBuilder("testScreen2").build());
-
-        /*
-        ServiceData serviceData = new ServiceData();
-
-        String screeIdDyn = "screenid";
-//        String menuId = this.privateMenu;
-        String menuId = "private";
-        Menu menu = new Menu();
-        menu.setId(menuId);
-        menu = getElements().getMenu("private");
-
-        Option option = new Option();
-        option.setLabel("StateKey");
-        option.setName(screeIdDyn);
-        option.setScreen(screeIdDyn);
-        option.setInvisible(true);
-        menu.addElement(option);
-
-        Window window = new Window();
-        window.setId("window1");
-        window.setLabel("windowLabel");
-        window.setStyle("expand");
-        window.setExpand("horizontal");
-        window.setMaximize(true);
-        Screen s = getElements().getScreen("loadNewScreen");
-        s.setId(screeIdDyn);
-
-//        if(s.getElementList().get(1).getElementList().size() > 1){
-//            s.getElementList().get(1).getElementList().remove(1);
-//            s.getElementList().get(1).getElementList().add(window);
-//        }
-//        else {
-//            s.getElementList().get(1).getElementList().add(window);
-//        }
-//
-//        if(s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().size() > 0){
-//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().remove(0);
-//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().add(tab);
-//        }
-//        else {
-//            s.getElementList().get(1).getElementList().get(1).getElementList().get(0).getElementList().add(tab);
-//        }
-        storeScreen(s,menu);
-        redirectTo(serviceData, screeIdDyn);
-        */
-
         return serviceData;
     }
+    */
+
+    public ServiceData createInstrumentsDetails() throws AWException {
+        ScreenBuilder builder = new ScreenBuilder()
+                .setId("instrumentsDetails")
+                .setTemplate("window");
+
+        TagBuilder tagButtons = new TagBuilder()
+                .setSource("buttons");
+
+        ButtonBuilder btnMtnSec = new ButtonBuilder()
+                .setId("btnMtnSec")
+                .setLabel("Maintain Security");
+        DependencyBuilder depBtnMtnSec = new DependencyBuilder()
+                .setTargetType(TargetType.SHOW)
+                .setInitial(true);
+        DependencyElementBuilder depEleSec = new DependencyElementBuilder()
+                .setId("tabIstr")
+                .setCondition(Condition.EQUALS)
+                .setValue("Securities");
+        depBtnMtnSec.addDependencyElement(depEleSec);
+        btnMtnSec.addDependency(depBtnMtnSec);
+
+        tagButtons.addButton(btnMtnSec);
+
+        TagBuilder tagCenter = new TagBuilder()
+                .setSource("center");
+
+        TabBuilder tabIstr = new TabBuilder()
+                .setId("tabIstr")
+                .setInitialLoad(InitialLoad.ENUMERATED)
+                .setTargetAction("enumIstr");
+        TabContainerBuilder tabCtnSec2 = new TabContainerBuilder().setId("Securities");
+        TabContainerBuilder tabCtnPrc2 = new TabContainerBuilder().setId("Pricing");
+        TabContainerBuilder tabCtnCli = new TabContainerBuilder().setId("Clients");
+        TabContainerBuilder tabCtnPfl = new TabContainerBuilder().setId("Portfolio");
+        TabContainerBuilder tabCtnPos = new TabContainerBuilder().setId("Position");
+
+
+
+        GridBuilder grdSec = new GridBuilder()
+                .setId("grdSec")
+                .setInitialLoad(InitialLoad.QUERY)
+                .setTargetAction("querIstrDtlSec")
+                .setStyle("expand")
+                .setSendOperations(true);
+
+        NumericColumnBuilder colIstrSecId = new NumericColumnBuilder()
+                .setId("colIstrSecId")
+                .setName("colIstrSecId")
+                .setLabel("Id")
+                .setHidden(true);
+        TextColumnBuilder colIstrSecNam = new TextColumnBuilder()
+                .setId("colIstrSecNam")
+                .setName("colIstrSecNam")
+                .setLabel("Name");
+        TextColumnBuilder colIstrSecTyp = new TextColumnBuilder()
+                .setId("colIstrSecTyp")
+                .setName("colIstrSecTyp")
+                .setLabel("Type");
+        TextColumnBuilder colIstrSecEmt = new TextColumnBuilder()
+                .setId("colIstrSecEmt")
+                .setName("colIstrSecEmt")
+                .setLabel("Emitter");
+        TextColumnBuilder colIstrSecRtg = new TextColumnBuilder()
+                .setId("colIstrSecRtg")
+                .setName("colIstrSecRtg")
+                .setLabel("Rating");
+        NumericColumnBuilder colIstrSecRsk = new NumericColumnBuilder()
+                .setId("colIstrSecRsk")
+                .setName("colIstrSecRsk")
+                .setLabel("Risk");
+        grdSec.addColumn(colIstrSecId, colIstrSecNam, colIstrSecTyp, colIstrSecEmt, colIstrSecRtg, colIstrSecRsk);
+
+        ButtonActionBuilder grdSecAddRow = new ButtonActionBuilder()
+                .setId("grdSecAddRow")
+                .setType(Action.ADD_ROW)
+                .setTarget("grdSec")
+                .setSilent(true);
+        ButtonBuilder btnGrdSecInsObj = new ButtonBuilder()
+                .setId("btnGrdSecIns2")
+                .setLabel("BUTTON_NEW")
+                .setIcon("plus-circle")
+                .addButtonAction(grdSecAddRow);
+        ButtonActionBuilder grdSecDelRow = new ButtonActionBuilder()
+                .setId("grdSecDelRow")
+                .setType(Action.DELETE_ROW)
+                .setTarget("grdSec")
+                .setSilent(true);
+        ButtonBuilder btnGrdSecDelObj = new ButtonBuilder()
+                .setId("btnGrdSecDel2")
+                .setLabel("BUTTON_DELETE")
+                .setIcon("trash")
+                .addButtonAction(grdSecDelRow);
+        grdSec.addButton(btnGrdSecInsObj, btnGrdSecDelObj);
+
+        tabCtnSec2.addGrid(grdSec);
+
+        GridBuilder grdPrc = new GridBuilder()
+                .setId("grdPrc")
+                .setInitialLoad(InitialLoad.QUERY)
+                .setTargetAction("querIstrDtlPrc")
+                .setStyle("expand")
+                .setSendOperations(true);
+
+        NumericColumnBuilder colIstrPrcId = new NumericColumnBuilder()
+                .setId("colIstrPrcId")
+                .setName("colIstrPrcId")
+                .setLabel("Id")
+                .setHidden(true);
+        TextColumnBuilder colIstrPrcSec = new TextColumnBuilder()
+                .setId("colIstrPrcSec")
+                .setName("colIstrPrcSec")
+                .setLabel("Security");
+        CalendarColumnBuilder colIstrPrcDate = new CalendarColumnBuilder()
+                .setId("colIstrPrcDate")
+                .setName("colIstrPrcDate")
+                .setLabel("Date");
+        NumericColumnBuilder colIstrPrcPrc = new NumericColumnBuilder()
+                .setId("colIstrPrcPrc")
+                .setName("colIstrPrcPrc")
+                .setLabel("Pricing");
+        grdPrc.addColumn(colIstrPrcId, colIstrPrcSec, colIstrPrcDate, colIstrPrcPrc);
+
+//        ButtonActionBuilder grdPrcAddRow = new ButtonActionBuilder()
+//                .setId("grdPrcAddRow")
+//                .setType(Action.ADD_ROW)
+//                .setTarget("grdPrc")
+//                .setSilent(true);
+//        ButtonBuilder btnGrdPrcInsObj2 = new ButtonBuilder()
+//                .setId("btnGrdPrcIns2")
+//                .setLabel("BUTTON_NEW")
+//                .setIcon("plus-circle");
+//                .addButtonAction(grdPrcAddRow);
+//        ButtonActionBuilder grdPrcDelRow = new ButtonActionBuilder()
+//                .setId("grdPrcDelRow")
+//                .setType(Action.DELETE_ROW)
+//                .setTarget("grdPrc")
+//                .setSilent(true);
+//        ButtonBuilder btnGrdPrcDelObj = new ButtonBuilder()
+//                .setId("btnGrdPrcDel")
+//                .setLabel("BUTTON_DELETE")
+//                .setIcon("trash");
+//                .addButtonAction(grdPrcDelRow);
+
+//        grdPrc.addButton(btnGrdPrcInsObj2
+//                , btnGrdPrcDelObj
+//        );
+
+        tabCtnPrc2.addGrid(grdPrc);
+
+        tabIstr.addTabContainerList(tabCtnSec2, tabCtnPrc2, tabCtnCli, tabCtnPfl, tabCtnPos);
+        tagCenter.addTab(tabIstr);
+        builder.addTag(tagButtons, tagCenter);
+
+        return new ServiceData().setData(builder.build());
+//        return builder.buildClientAction(getElements());
+    }
+
+
 
 }
 
